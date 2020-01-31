@@ -1,6 +1,6 @@
 using System;
 
-namespace SeniorCollegeScheduler.Models
+namespace Senior_College_Project.Models
 {
     public class ErrorViewModel
     {
