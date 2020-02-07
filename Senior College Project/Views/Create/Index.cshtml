@@ -1,4 +1,4 @@
-﻿@model Senior_College_Project.Models.ViewModels.CreateClassCommand
+﻿@model Senior_College_Project.Models.ViewModels.FormCreationViewModel
 @{
     ViewData["Title"] = "Index";
 }
@@ -19,9 +19,9 @@
                     <span asp-validation-for="ProposedTitle"></span>
                 </div>
                 <div style="width: 50%; margin: auto">
-                    <label asp-for="NumClassSessions">Number of Class Sessions</label>
-                    <input class="form-control" asp-for="NumClassSessions" />
-                    <span asp-validation-for="NumClassSessions"></span>
+                    <label asp-for="NumberOfSessions">Number of Class Sessions</label>
+                    <input class="form-control" asp-for="NumberOfSessions" />
+                    <span asp-validation-for="NumberOfSessions"></span>
                 </div>
                 <div style="width: 50%;  margin: auto">
                     <label asp-for="LengthOfSession">Length of Class Session</label>
@@ -29,19 +29,14 @@
                     <span asp-validation-for="LengthOfSession"></span>
                 </div>
                 <div>
-                    <label style="display:block" asp-for="ClassDesc">Class Description</label>
-                    <textarea style="width: 75%" rows="3" cols="80"> </textarea>
-                    <span asp-validation-for="ClassDesc"></span>
+                    <label style="display:block" asp-for="CourseDescription">Class Description</label>
+                    <textarea asp-for="CourseDescription" style="width: 75%" rows="3" cols="80"> </textarea>
+                    <span asp-validation-for="CourseDescription"></span>
                 </div>
                 <div>
-                    <label style="display:block" asp-for="PreRequisites">Pre-Requisites</label>
-                    <textarea style="width: 75%" rows="3" cols="80"> </textarea>
-                    <span asp-validation-for="PreRequisites"></span>
-                </div>
-                <div>
-                    <label style="display:block">Please describe your expertise, including your qualifications to teach this course</label>
-                    <textarea style="width: 75%" rows="3" cols="80"> </textarea>
-                    <span asp-validation-for="PreRequisites"></span>
+                    <label style="display:block" asp-for="PreRequisite">Pre-Requisites</label>
+                    <textarea asp-for="PreRequisite" style="width: 75%" rows="3" cols="80"> </textarea>
+                    <span asp-validation-for="PreRequisite"></span>
                 </div>
 
             </div>
@@ -159,17 +154,17 @@
             <div style="text-align: center">
                 <p>If you have number of student restrictions for your class, please enter below: </p>
                 <div style="border: 1px solid black">
-                    <label>Minimum Number of Students</label>
-                    <input style="margin: 5px; width: 50px" type="text" />
-                    <label>Maximum Number of Students</label>
-                    <input type="text" style="width: 50px" />
+                    <label asp-for="MinStudentCount"> Minimum Students</label>
+                    <input asp-for="MinStudentCount" style="margin: 5px; width: 50px" type="text" />
+                    <label asp-for="MaxStudentCount"> Maximum Students</label>
+                    <input asp-for="MaxStudentCount" type="text" style="width: 50px" />
                 </div>
                 <p><span style="text-decoration: underline">Classroom Set-up</span>, please check box based on need</p>
                 <div style="border: 1px solid black">
-                    <label>Chairs for Students</label>
-                    <input style="margin: 5px" type="checkbox" />
-                    <label>Tables and Chairs for Students</label>
-                    <input type="checkbox" />
+                    <label asp-for="ChairsNeeded">Chairs for Students</label>
+                    <input asp-for="ChairsNeeded" style="margin: 5px; width: 50px" type="text" />
+                    <label asp-for="TablesNeeded">Tables and Chairs for Students</label>
+                    <input style="width: 50px" asp-for="TablesNeeded" type="text" />
                 </div>
                 <p>
                     <span style="text-decoration: underline">Equipment Needed:</span>We will do our best to provide you
@@ -198,37 +193,22 @@
                 <div style="border: 1px solid black; border-top: none; margin-bottom: 5px;">
                     <label>Podium</label>
                     <input style="margin: 5px" type="checkbox" />
-                    <label>Other:</label>
-                    <input style="margin: 5px; width: 50px;" type="text" />
+                    <label asp-for="OtherEquipmentNeeded">Other:</label>
+                    <input asp-for="OtherEquipmentNeeded" style="margin: 5px; width: 50px;" type="text" />
                 </div>
-                <label>Handouts, Cost: </label>
-                <input type="text" />
+                <label asp-for="HandoutCost">Handouts, Cost: </label>
+                <input asp-for="HandoutCost" type="text" />
                 <p>
                     (A cost estimate is needed to build the handout cost into the course tuition;
                     instructors will be reimbursed actual expenses up to $2.00 per student for handouts
                     upon submission of a receipt. Higher amounts will be considered on a case by case basis.)
                 </p>
-                <p>
-                    Senior College students are sometimes interested in contacting the instructor prior to the first class.
-                    Please check the box next to (after) the items we have permission to release to your students.
-                </p>
-                <div style="border:1px solid black">
-                    <label>Land Phone</label>
-                    <input style="margin: 5px" type="checkbox" />
-                    <label>Cell Phone</label>
-                    <input type="checkbox" />
-                    <label>E-mail Address</label>
-                    <input type="checkbox" />
-                </div>
-                <p style="font-style: italic"> It is solely at your discretion if you choose to provide this information</p>
-
+                
                 <p><span>Senior College pays instructors a stipend of $50 per hour of instruction.</span> Events may have a different pay structure.</p>
-                <p>Please indicate whether you wish to be paid or waive this stipend:</p>
+                <p>Please indicate whether you wish to be paid this stipend (leave unchecked if you wish to waive this stipend):</p>
                 <div>
                     <label>Stipend to instructor </label>
-                    <input style="margin: 5px" type="checkbox" />
-                    <label>No stipend to instructor</label>
-                    <input style="margin: 5px; width: 50px;" type="checkbox" />
+                    <input asp-for="StipendRequested" style="margin: 5px" type="checkbox" />
                 </div>
             </div>
 
