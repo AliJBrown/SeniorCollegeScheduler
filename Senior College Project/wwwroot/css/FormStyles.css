@@ -1,0 +1,18 @@
+﻿body {
+}
+
+
+.important{
+    font-weight:bold;
+
+}
+
+#wrapper{
+    width: 80%;
+    justify-content:center;
+    margin:auto;
+}
+
+.simpleTextField{
+    width: 25%;
+}
