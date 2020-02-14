@@ -1,4 +1,4 @@
-﻿@model Senior_College_Project.Models.ViewModels.FormCreationViewModel
+﻿@model Senior_College_Project.Models.ViewModels.CreateClassCommand
 @{
     ViewData["Title"] = "Index";
 }
@@ -19,9 +19,9 @@
                     <span asp-validation-for="ProposedTitle"></span>
                 </div>
                 <div style="width: 50%; margin: auto">
-                    <label asp-for="NumberOfSessions">Number of Class Sessions</label>
-                    <input class="form-control" asp-for="NumberOfSessions" />
-                    <span asp-validation-for="NumberOfSessions"></span>
+                    <label asp-for="NumClassSessions">Number of Class Sessions</label>
+                    <input class="form-control" asp-for="NumClassSessions" />
+                    <span asp-validation-for="NumClassSessions"></span>
                 </div>
                 <div style="width: 50%;  margin: auto">
                     <label asp-for="LengthOfSession">Length of Class Session</label>
@@ -29,14 +29,14 @@
                     <span asp-validation-for="LengthOfSession"></span>
                 </div>
                 <div>
-                    <label style="display:block" asp-for="CourseDescription">Class Description</label>
-                    <textarea asp-for="CourseDescription" style="width: 75%" rows="3" cols="80"> </textarea>
-                    <span asp-validation-for="CourseDescription"></span>
+                    <label style="display:block" asp-for="ClassDesc">Class Description</label>
+                    <textarea asp-for="ClassDesc" style="width: 75%" rows="3" cols="80"> </textarea>
+                    <span asp-validation-for="ClassDesc"></span>
                 </div>
                 <div>
-                    <label style="display:block" asp-for="PreRequisite">Pre-Requisites</label>
-                    <textarea asp-for="PreRequisite" style="width: 75%" rows="3" cols="80"> </textarea>
-                    <span asp-validation-for="PreRequisite"></span>
+                    <label style="display:block" asp-for="PreRequisites">Pre-Requisites</label>
+                    <textarea asp-for="PreRequisites" style="width: 75%" rows="3" cols="80"> </textarea>
+                    <span asp-validation-for="PreRequisites"></span>
                 </div>
 
             </div>
