@@ -20,8 +20,8 @@ namespace Senior_College_Project.Models.ViewModels
                 ProposedID = proposedClass.ProposedID,
                 ProposedDate = proposedClass.ProposedDate,
                 ProposedTitle = proposedClass.ProposedTitle,
-                InstructorName = proposedClass.ProposedByInstructor,
-                City = proposedClass.City
+                //InstructorName = proposedClass.ProposedByInstructor,
+                //City = proposedClass.City
             };
         }
     }
