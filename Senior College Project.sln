@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29215.179
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Senior College Project", "Senior College Project\Senior College Project.csproj", "{A702A90E-1E21-4EDA-AB0B-BE8910295683}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Senior_College_Project", "Senior College Project\Senior_College_Project.csproj", "{A702A90E-1E21-4EDA-AB0B-BE8910295683}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

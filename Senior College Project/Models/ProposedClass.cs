@@ -6,15 +6,17 @@ using System.Threading.Tasks;
 
 namespace Senior_College_Project.Models.ViewModels
 {
-    public class FormCreationViewModel
+    public class ProposedClass
 {
+        public int ProposedID { get; set; }
+        public DateTime ProposedDate { get; set; }
         public String ProposedTitle { get; set; }
         public int NumberOfSessions { get; set; }
         public int LengthOfSession { get; set; }
-        public String CourseDescription { get; set; }
-        public String PreRequisite { get; set; }
+        public string CourseDescription { get; set; }
+        public string PreRequisite { get; set; }
         //add Prefered Sessions times
-        public String UnavailableTimes { get; set; }
+        public string UnavailableTimes { get; set; }
         public int MinStudentCount { get; set; }
         public int MaxStudentCount { get; set; }
 
@@ -22,10 +24,13 @@ namespace Senior_College_Project.Models.ViewModels
         public int ChairsNeeded { get; set; }
         public int TablesNeeded { get; set; }
         //add Equipment needed
-        public int OtherEquipmentNeeded { get; set; }
+        public string OtherEquipmentNeeded { get; set; }
         public double HandoutCost { get; set; }
-        
-        public String StipendRequested { get; set; }
+        public string StipendRequested { get; set; }
+
+        //Need these to fill class summary view model information. or grab them from accounts
+        public string ProposedByInstructor { get; set; }
+        public string City { get; set; }
 
 }
 }
