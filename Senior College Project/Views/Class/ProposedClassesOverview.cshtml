@@ -1,0 +1,34 @@
+﻿@model ICollection<ClassSummaryViewModel>
+@{
+    ViewData["Title"] = "Proposed Classes";
+}
+
+
+<h2 style="text-align:center;"> @ViewData["Title"]</h2>
+
+<div class="table-responsive">
+    <table class="table table-striped recipe">
+        <thead>
+            <tr>
+                <th>Proposed Date</th>
+                <th>Proposed Title</th>
+                <th>Instructor Name</th>
+                <th>City</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var proposedClass in Model)
+            {
+                <tr>
+
+                    <td>@proposedClass.ProposedDate</td>
+                    <td>@proposedClass.ProposedTitle</td>
+                    <td>@proposedClass.InstructorName</td>
+                    <td>@proposedClass.City</td>
+                    <td><a asp-action="ViewClassDetails" asp-route-id="@proposedClass.ProposedID" class="btn">View</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -6,9 +6,19 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Senior_College_Project.Controllers
 {
-    public class CreateController : Controller
+    public class ClassController : Controller
     {
         public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult ProposedClassesOverview()
+        {
+            return View();
+        }
+
+        public IActionResult ProposedClassDetailed()
         {
             return View();
         }
