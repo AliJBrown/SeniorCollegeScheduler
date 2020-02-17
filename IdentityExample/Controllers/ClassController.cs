@@ -1,22 +1,65 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SeniorCollegeScheduler.Models.ViewModels;
+using System;
+using System.Threading.Tasks;
 
 namespace SeniorCollegeScheduler.Controllers
 {
     public class ClassController : Controller
     {
-        public IActionResult Index()
+
+        private readonly CollegeDBService _service;
+
+        public ClassController(CollegeDBService service)
         {
-            return View();
+            _service = service;
         }
+
+        public IActionResult CreateProposal()
+        {
+            return View(new CreateClassCommand());
+        }
+
+        [HttpPost]
+        public IActionResult CreateProposal(CreateClassCommand command)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    
+                    var id = _service.CreateClassProposal(command);
+                    return RedirectToAction(nameof(ProposedClassDetails), new { id = id });
+                }
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError(
+                    string.Empty,
+                    "An error occured saving the proposal"
+                    );
+            }
+
+            return View(command);
+        }
+
+
 
         public IActionResult ProposedClassesOverview()
         {
-            return View();
+            var models = _service.GetProposals();
+            return View(models);
         }
 
-        public IActionResult ProposedClassDetailed()
+        public IActionResult ProposedClassDetails(int id)
         {
-            return View();
+            var model = _service.GetProposedClassDetails(id);
+            if(model == null)
+            {
+                return NotFound();
+            }
+
+            return View(model);
         }
     }
 }
