@@ -10,6 +10,7 @@
     <table class="table table-striped recipe">
         <thead>
             <tr>
+                <th>Proposed ID</th>
                 <th>Proposed Date</th>
                 <th>Proposed Title</th>
                 <th>Instructor Name</th>
@@ -24,9 +25,8 @@
 
                     <td>@proposedClass.ProposedDate</td>
                     <td>@proposedClass.ProposedTitle</td>
-                    <td>@proposedClass.InstructorName</td>
-                    <td>@proposedClass.City</td>
-                    <td><a asp-action="ViewClassDetails" asp-route-id="@proposedClass.ProposedID" class="btn">View</a></td>
+                    <td>@proposedClass.ProposedID</td>
+                    <td><a asp-action="ProposedClassDetails" asp-route-id="@proposedClass.ProposedID" class="btn">View</a></td>
                 </tr>
             }
         </tbody>

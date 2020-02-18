@@ -1,0 +1,55 @@
+﻿@model SeniorCollegeScheduler.Models.ViewModels.ClassDetailedViewModel
+@{
+    ViewData["Title"] = "Proposed Class Details";
+}
+
+<h2 style="text-align: center">@ViewData["Title"]</h2>
+
+<h4 style="text-align: center">Proposed By: </h4>
+<h4 style="text-align: center">Proposed On: <span class="courseDetails">@Model.ProposedDate</span></h4>
+<div style="padding-top: 20px">
+    <div style="float: left; width: 40%">
+        <h4 style="text-align: center">Class Description: <span class="courseDetails">@Model.ClassDesc</span></h4>
+        <h4 style="text-align: center">Class Pre-Requisites: <span class="courseDetails">@Model.PreRequisites </span></h4>
+    </div>
+    <div style="float: right; width: 40%">
+        <h4>Prefered Days: </h4>
+        <h4>Date/Time Restrictions Days: </h4>
+    </div>
+</div>
+
+<div style="clear: both; text-align:center; padding-top: 20px;">
+    <h3>Instructor Requirements</h3>
+    <div style="float: left; width: 40%">
+        <h4>Minimum Students: <span class="courseDetails">@Model.MinStudentCount</span></h4>
+        <h4>Maximum Students: <span class="courseDetails">@Model.MaxStudentCount</span></h4>
+        <h4>Stipend Instructor: <span class="courseDetails"> @Model.StipendRequested</span></h4>
+    </div>
+    <div style="float: right; width: 40%">
+        <h4>Tables Needed: <span class="courseDetails">@Model.TablesNeeded</span></h4>
+        <h4>Chairs Needed: <span class="courseDetails">@Model.ChairsNeeded</span></h4>
+        <h4>Handout Costs: <span class="courseDetails">@Model.HandoutCost</span></h4>
+    </div>
+</div>
+
+<div style="clear: both; text-align:center; padding-top:20px;">
+    <h3>Class Room Needs</h3>
+    <div style="float: left; width: 40%">
+        <h4>Internet Connection: (yes/no)</h4>
+        <h4>Dry Erase Board: (yes/no)</h4>
+        <h4>Projector w/Screenwall: (if yes display pc connection type)</h4>
+    </div>
+    <div style="float: right; width: 40%">
+        <h4>Microphone/Sound System: </h4>
+        <h4>VCR/DVD Player & Screen: </h4>
+        <h4>Podium: </h4>
+    </div>
+    <div style="clear: both"></div>
+    <h4>Other Equipment: <span class="courseDetails">@Model.OtherEquipmentNeeded</span></h4>
+</div>
+
+<div style="clear: both"></div>
+
+
+
+
