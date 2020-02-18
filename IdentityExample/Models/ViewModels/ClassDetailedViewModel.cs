@@ -7,13 +7,7 @@ namespace SeniorCollegeScheduler.Models.ViewModels
         //Still need preferred time variables
         public DateTime ProposedDate { get; set; }
         public string ProposedTitle { get; set; }
-        public string MailingAddress { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        public string ZipCode { get; set; }
-        public string LandPhone { get; set; }
-        public string CellPhone { get; set; }
-        public string EMail { get; set; }
+        
         public int NumClassSessions { get; set; }
         public int LengthOfSession { get; set; }
         public string ClassDesc { get; set; }
@@ -24,6 +18,6 @@ namespace SeniorCollegeScheduler.Models.ViewModels
         public int ChairsNeeded { get; set; }
         public string OtherEquipmentNeeded { get; set; }
         public double HandoutCost { get; set; }
-        public string StipendRequested { get; set; }
+        public bool StipendRequested { get; set; }
     }
 }

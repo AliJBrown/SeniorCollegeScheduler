@@ -7,7 +7,8 @@
 
 
 
-<form asp-controller="Create" asp-action="Index" method="post">
+<form asp-controller="Class" asp-action="CreateProposal" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div id="wrapper">
         <h3 style="text-align: center">Today's Date: @DateTime.Now</h3>
         <div style="text-align: center;">
@@ -16,27 +17,27 @@
                 <div style="width: 50%;  margin: auto">
                     <label asp-for="ProposedTitle">Proposed Title</label>
                     <input class="form-control" asp-for="ProposedTitle" />
-                    <span asp-validation-for="ProposedTitle"></span>
+                    <span asp-validation-for="ProposedTitle" class="text-danger"></span>
                 </div>
                 <div style="width: 50%; margin: auto">
                     <label asp-for="NumClassSessions">Number of Class Sessions</label>
                     <input class="form-control" asp-for="NumClassSessions" />
-                    <span asp-validation-for="NumClassSessions"></span>
+                    <span asp-validation-for="NumClassSessions" class="text-danger"></span>
                 </div>
                 <div style="width: 50%;  margin: auto">
                     <label asp-for="LengthOfSession">Length of Class Session</label>
                     <input class="form-control" asp-for="LengthOfSession" />
-                    <span asp-validation-for="LengthOfSession"></span>
+                    <span asp-validation-for="LengthOfSession" class="text-danger"></span>
                 </div>
                 <div>
                     <label style="display:block" asp-for="ClassDesc">Class Description</label>
                     <textarea asp-for="ClassDesc" style="width: 75%" rows="3" cols="80"> </textarea>
-                    <span asp-validation-for="ClassDesc"></span>
+                    <span asp-validation-for="ClassDesc" class="text-danger"></span>
                 </div>
                 <div>
                     <label style="display:block" asp-for="PreRequisites">Pre-Requisites</label>
                     <textarea asp-for="PreRequisites" style="width: 75%" rows="3" cols="80"> </textarea>
-                    <span asp-validation-for="PreRequisites"></span>
+                    <span asp-validation-for="PreRequisites" class="text-danger"></span>
                 </div>
 
             </div>
@@ -156,15 +157,19 @@
                 <div style="border: 1px solid black">
                     <label asp-for="MinStudentCount"> Minimum Students</label>
                     <input asp-for="MinStudentCount" style="margin: 5px; width: 50px" type="text" />
+                    <span asp-validation-for="MinStudentCount" class="text-danger"></span>
                     <label asp-for="MaxStudentCount"> Maximum Students</label>
                     <input asp-for="MaxStudentCount" type="text" style="width: 50px" />
+                    <span asp-validation-for="MinStudentCount" class="text-danger"></span>
                 </div>
                 <p><span style="text-decoration: underline">Classroom Set-up</span>, please check box based on need</p>
                 <div style="border: 1px solid black">
                     <label asp-for="ChairsNeeded">Chairs for Students</label>
                     <input asp-for="ChairsNeeded" style="margin: 5px; width: 50px" type="text" />
+                    <span asp-validation-for="ChairsNeeded" class="text-danger"></span>
                     <label asp-for="TablesNeeded">Tables and Chairs for Students</label>
                     <input style="width: 50px" asp-for="TablesNeeded" type="text" />
+                    <span asp-validation-for="TablesNeeded" class="text-danger"></span>
                 </div>
                 <p>
                     <span style="text-decoration: underline">Equipment Needed:</span>We will do our best to provide you
@@ -195,9 +200,11 @@
                     <input style="margin: 5px" type="checkbox" />
                     <label asp-for="OtherEquipmentNeeded">Other:</label>
                     <input asp-for="OtherEquipmentNeeded" style="margin: 5px; width: 50px;" type="text" />
+                    <span asp-validation-for="OtherEquipmentNeeded" class="text-danger"></span>
                 </div>
                 <label asp-for="HandoutCost">Handouts, Cost: </label>
                 <input asp-for="HandoutCost" type="text" />
+                <span asp-validation-for="HandoutCost" class="text-danger"></span>
                 <p>
                     (A cost estimate is needed to build the handout cost into the course tuition;
                     instructors will be reimbursed actual expenses up to $2.00 per student for handouts
@@ -208,7 +215,7 @@
                 <p>Please indicate whether you wish to be paid this stipend (leave unchecked if you wish to waive this stipend):</p>
                 <div>
                     <label>Stipend to instructor </label>
-                    <input asp-for="StipendRequested" style="margin: 5px" type="checkbox" />
+                    <input asp-for="StipendRequested" style="margin: 5px" type="checkbox" name="StipendRequested" value="true"/>
                 </div>
             </div>
 
@@ -219,7 +226,7 @@
 
             <p>Thank you for your interest in teaching for Senior College of Greater Des Moines!</p>
 
-            <button type="submit"> Submit </button>
+            <button type="submit" class="btn btn-primary"> Submit </button>
 
         </div>
     </div>
