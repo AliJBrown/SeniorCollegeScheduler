@@ -7,9 +7,9 @@ namespace SeniorCollegeScheduler.Models
     {
         [Key]
         public int ProposedID { get; set; }
-
         public DateTime ProposedDate { get; set; }
         public string ProposedTitle { get; set; }
+        public bool IsReviewed { get; set; }
         public int NumberOfSessions { get; set; }
         public int LengthOfSession { get; set; }
         public string CourseDescription { get; set; }
@@ -33,6 +33,7 @@ namespace SeniorCollegeScheduler.Models
         public string PCConnectionType { get; set; }
         public bool MicrophoneAndSound { get; set; }
         public bool DVDAndVCRPlayer { get; set; }
+        public bool Podium { get; set; }
 
         //PREFERED TIMES MONDAY
         public bool MondayEvening { get; set; }

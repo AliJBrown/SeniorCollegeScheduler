@@ -43,11 +43,22 @@ namespace SeniorCollegeScheduler.Controllers
             return View(command);
         }
 
-
+        [HttpPost]
+        public IActionResult MarkProposalReviewed(int id)
+        {
+            _service.MarkReviewed(id);
+            return RedirectToAction(nameof(ProposedClassesOverview));
+        }
 
         public IActionResult ProposedClassesOverview()
         {
             var models = _service.GetProposals();
+            return View(models);
+        }
+
+        public IActionResult ReviewedClassesOverview()
+        {
+            var models = _service.GetReviewedProposals();
             return View(models);
         }
 

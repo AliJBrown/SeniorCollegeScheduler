@@ -118,37 +118,37 @@
             </div>
             <div style="word-spacing: 60px; text-align: center">
                 <h5 style="display:inline">Morning</h5>
-                <input type="checkbox" name="MonMorning" value="Monday Morning" />
-                <input type="checkbox" name="TuesMorning" value="Tuesday Morning" />
-                <input type="checkbox" name="WedMorning" value="Wednesday Morning" />
-                <input type="checkbox" name="ThursMorning" value="Thursday Morning" />
-                <input type="checkbox" name="FriMorning" value="Friday Morning" />
-                <input type="checkbox" name="SatMorning" value="Saturday Morning" />
-                <input type="checkbox" name="SunMorning" value="Sunday Morning" />
+                <input asp-for="MondayMorning" type="checkbox" value="true" />
+                <input asp-for="TuesdayMorning" type="checkbox" value="true" />
+                <input asp-for="WednesdayMorning" type="checkbox" value="true" />
+                <input asp-for="ThursdayMorning" type="checkbox" value="true" />
+                <input asp-for="FridayMorning" type="checkbox" value="true" />
+                <input asp-for="SaturdayMorning" type="checkbox" value="true" />
+                <input asp-for="SundayMorning" type="checkbox" value="true" />
             </div>
             <div style="word-spacing: 60px; text-align: center">
                 <h5 style="display:inline">Aternoon</h5>
-                <input type="checkbox" name="MonAfternoon" value="Monday Afternoon" />
-                <input type="checkbox" name="TuesAfternoon" value="Tuesday Afternoon" />
-                <input type="checkbox" name="WedAfternoon" value="Wednesday Afternoon" />
-                <input type="checkbox" name="ThursAfternoon" value="Thursday Afternoon" />
-                <input type="checkbox" name="FriAfternoon" value="Friday Afternoon" />
-                <input type="checkbox" name="SatAfternoon" value="Saturday Afternoon" />
-                <input type="checkbox" name="SunAfternoon" value="Sunday Afternoon" />
+                <input asp-for="MondayAfternoon" type="checkbox" value="true" />
+                <input asp-for="TuesdayAfternoon" type="checkbox" value="true" />
+                <input asp-for="WednesdayAfternoon" type="checkbox" value="true" />
+                <input asp-for="ThursdayAfternoon" type="checkbox" value="true" />
+                <input asp-for="FridayAfternoon" type="checkbox" value="true" />
+                <input asp-for="SaturdayAfternoon" type="checkbox" value="true" />
+                <input asp-for="SundayAfternoon" type="checkbox" value="true" />
             </div>
             <div style="word-spacing: 60px; text-align: center">
                 <h5 style="display:inline">Evening</h5>
-                <input type="checkbox" name="MonEvening" value="Monday Evening" />
-                <input type="checkbox" name="TuesEvening" value="Tuesday Evening" />
-                <input type="checkbox" name="WedEvening" value="Wednesday Evening" />
-                <input type="checkbox" name="ThursEvening" value="Thursday Evening" />
-                <input type="checkbox" name="FriEvening" value="Friday Evening" />
-                <input type="checkbox" name="SatEvening" value="Saturday Evening" />
-                <input type="checkbox" name="SunEvening" value="Sunday Evening" />
+                <input asp-for="MondayEvening" type="checkbox" value="true" />
+                <input asp-for="TuesdayEvening" type="checkbox" value="true" />
+                <input asp-for="WednesdayEvening" type="checkbox" value="true" />
+                <input asp-for="ThursdayEvening" type="checkbox" value="true" />
+                <input asp-for="FridayEvening" type="checkbox" value="true" />
+                <input asp-for="SaturdayEvening" type="checkbox" value="true" />
+                <input asp-for="SundayEvening" type="checkbox" value="true" />
             </div>
             <div style="text-align: center; margin: 5px;">
                 <label>Please list any date/time restrictions</label>
-                <input type="text" />
+                <input asp-for="DateTimeRestrictions" type="text" />
             </div>
 
             <h3 style="text-align:center; text-decoration:underline">Instructor Requirements</h3>
@@ -179,25 +179,25 @@
                 </p>
                 <div style="border: 1px solid black">
                     <label>Internet Connection</label>
-                    <input style="margin: 5px" type="checkbox" />
+                    <input style="margin: 5px" type="checkbox" value="true" asp-for="InternetConnection"/>
                     <label>Dry Erase Board and Markers</label>
-                    <input type="checkbox" />
+                    <input type="checkbox" value="true" asp-for="DryEraseWithMarkers"/>
                 </div>
                 <div style="border: 1px solid black; border-top: none">
                     <label>Projector for laptop w/ Screenwall</label>
-                    <input style="margin: 5px" type="checkbox" />
+                    <input style="margin: 5px" type="checkbox" value="true" asp-for="ProjectorWithScreen" />
                     <label>Enter PC Connection Type</label>
-                    <input style="margin: 5px; width: 50px;" type="text" />
+                    <input style="margin: 5px; width: 50px;" type="text" asp-for="PCConnectionType" />
                 </div>
                 <div style="border: 1px solid black; border-top: none">
                     <label>Microphone/Sound System</label>
-                    <input style="margin: 5px" type="checkbox" />
+                    <input style="margin: 5px" type="checkbox" value="true" asp-for="MicrophoneWithSoundSystem" />
                     <label>VCR/DVD Player & Screen</label>
-                    <input type="checkbox" />
+                    <input type="checkbox" value="true" asp-for="VCROrDVDWithScreen"/>
                 </div>
                 <div style="border: 1px solid black; border-top: none; margin-bottom: 5px;">
                     <label>Podium</label>
-                    <input style="margin: 5px" type="checkbox" />
+                    <input style="margin: 5px" type="checkbox" value="true" asp-for="Podium" />
                     <label asp-for="OtherEquipmentNeeded">Other:</label>
                     <input asp-for="OtherEquipmentNeeded" style="margin: 5px; width: 50px;" type="text" />
                     <span asp-validation-for="OtherEquipmentNeeded" class="text-danger"></span>
