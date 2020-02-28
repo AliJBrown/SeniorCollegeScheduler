@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SeniorCollegeScheduler.Data;
 
 namespace SeniorCollegeScheduler.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200228175655_AddedInstructorTable")]
+    partial class AddedInstructorTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -223,7 +225,7 @@ namespace SeniorCollegeScheduler.Data.Migrations
 
                     b.HasKey("InstructorId");
 
-                    b.ToTable("User");
+                    b.ToTable("Instructor");
                 });
 
             modelBuilder.Entity("SeniorCollegeScheduler.Models.ProposedClass", b =>

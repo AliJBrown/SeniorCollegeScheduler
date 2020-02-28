@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SeniorCollegeScheduler.Models;
+using SeniorCollegeScheduler.Models.DataModels;
 
 namespace SeniorCollegeScheduler.Data
 {
@@ -11,6 +12,7 @@ namespace SeniorCollegeScheduler.Data
         {
         }
 
+        public DbSet<User> User { get; set; }
         public DbSet<ProposedClass> ProposedClass { get; set; }
     }
 }
