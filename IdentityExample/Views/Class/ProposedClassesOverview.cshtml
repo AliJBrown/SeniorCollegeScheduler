@@ -7,6 +7,7 @@
 <h2 style="text-align:center;"> @ViewData["Title"]</h2>
 
 <div class="table-responsive">
+    
     <table class="table table-striped recipe">
         <thead>
             <tr>
@@ -22,14 +23,15 @@
 
             @foreach (var proposedClass in Model)
             {
-                <tr>
-                    <td>@proposedClass.ProposedID</td>
-                    <td>@proposedClass.ProposedDate</td>
-                    <td>@proposedClass.ProposedTitle</td>
-                    <td>N/A</td>
-                    <td>N/A</td>
-                    <td><a asp-action="ProposedClassDetails" asp-route-id="@proposedClass.ProposedID" class="btn">View</a></td>
-                </tr>
+            <tr>
+                <td>@proposedClass.user</td>
+                <td>@proposedClass.ProposedID</td>
+                <td>@proposedClass.ProposedDate</td>
+                <td>@proposedClass.ProposedTitle</td>
+                <td>N/A</td>
+                <td>N/A</td>
+                <td><a asp-action="ProposedClassDetails" asp-route-id="@proposedClass.ProposedID" class="btn">View</a></td>
+            </tr>
             }
         </tbody>
     </table>

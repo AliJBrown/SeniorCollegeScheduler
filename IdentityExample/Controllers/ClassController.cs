@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SeniorCollegeScheduler.Models.ViewModels;
 using System;
@@ -10,10 +11,12 @@ namespace SeniorCollegeScheduler.Controllers
     {
 
         private readonly CollegeDBService _service;
+        private readonly UserManager<IdentityUser> _userService;
 
-        public ClassController(CollegeDBService service)
+        public ClassController(CollegeDBService service, UserManager<IdentityUser> userService)
         {
             _service = service;
+            _userService = userService;
         }
 
         [Authorize]
@@ -53,9 +56,10 @@ namespace SeniorCollegeScheduler.Controllers
         }
 
         [Authorize]
-        public IActionResult ProposedClassesOverview()
+        public async Task<IActionResult> ProposedClassesOverview()
         {
-            var models = _service.GetProposals();
+            var appUser = await _userService.GetUserAsync(User);
+            var models = _service.GetProposals(appUser);
             return View(models);
         }
 
