@@ -19,13 +19,13 @@ namespace SeniorCollegeScheduler
         {
             _context = context;
         }
-        
+
 
         public int CreateClassProposal(CreateClassCommand cmd)
         {
             var proposal = cmd.ToProposal();
 
-            
+
 
             proposal.StipendRequested = CheckboxValue(cmd.StipendRequested);
 
@@ -83,7 +83,7 @@ namespace SeniorCollegeScheduler
         {
             bool value = false;
 
-            if(CheckboxValue == "true")
+            if (CheckboxValue == "true")
             {
                 value = true;
             }
@@ -114,7 +114,7 @@ namespace SeniorCollegeScheduler
                     ProposedID = x.ProposedID,
                     ProposedDate = x.ProposedDate,
                     ProposedTitle = x.ProposedTitle,
-                    
+
                 })
                 .OrderByDescending(x => x.ProposedDate)
                 .ToList();
@@ -123,7 +123,7 @@ namespace SeniorCollegeScheduler
         public void MarkReviewed(int ProposalId)
         {
             var proposal = _context.ProposedClass.Find(ProposalId);
-            if(proposal == null) { throw new Exception("Unable to mark proposal reviewed"); }
+            if (proposal == null) { throw new Exception("Unable to mark proposal reviewed"); }
 
             proposal.IsReviewed = true;
             _context.SaveChanges();
@@ -174,13 +174,13 @@ namespace SeniorCollegeScheduler
                     FridayAfternoon = x.FridayAfternoon,
                     FridayEvening = x.FridayEvening,
                     SaturdayMorning = x.SaturdayMorning,
-                    SaturdayAfternoon = x.SaturdayAfternoon, 
+                    SaturdayAfternoon = x.SaturdayAfternoon,
                     SaturdayEvening = x.SaturdayEvening,
                     SundayMorning = x.SundayMorning,
                     SundayAfternoon = x.SundayAfternoon,
                     SundayEvening = x.SundayEvening
 
-                    
+
                 })
                 .SingleOrDefault();
         }
