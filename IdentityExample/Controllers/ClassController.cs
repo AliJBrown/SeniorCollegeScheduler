@@ -9,7 +9,6 @@ namespace SeniorCollegeScheduler.Controllers
 {
     public class ClassController : Controller
     {
-
         private readonly CollegeDBService _service;
         private readonly UserManager<IdentityUser> _userService;
 
@@ -32,7 +31,6 @@ namespace SeniorCollegeScheduler.Controllers
             {
                 if (ModelState.IsValid)
                 {
-
                     var id = _service.CreateClassProposal(command);
                     return RedirectToAction(nameof(ProposedClassDetails), new { id = id });
                 }
@@ -41,7 +39,7 @@ namespace SeniorCollegeScheduler.Controllers
             {
                 ModelState.AddModelError(
                     string.Empty,
-                    "An error occured saving the proposal"
+                    "An error occurred saving the proposal"
                     );
             }
 
