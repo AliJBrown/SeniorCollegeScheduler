@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SeniorCollegeScheduler.Models.ViewModels;
 using System;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ namespace SeniorCollegeScheduler.Controllers
             _service = service;
         }
 
+        [Authorize]
         public IActionResult CreateProposal()
         {
             return View(new CreateClassCommand());
@@ -27,7 +29,7 @@ namespace SeniorCollegeScheduler.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    
+
                     var id = _service.CreateClassProposal(command);
                     return RedirectToAction(nameof(ProposedClassDetails), new { id = id });
                 }
@@ -50,22 +52,25 @@ namespace SeniorCollegeScheduler.Controllers
             return RedirectToAction(nameof(ProposedClassesOverview));
         }
 
+        [Authorize]
         public IActionResult ProposedClassesOverview()
         {
             var models = _service.GetProposals();
             return View(models);
         }
 
+        [Authorize]
         public IActionResult ReviewedClassesOverview()
         {
             var models = _service.GetReviewedProposals();
             return View(models);
         }
 
+        [Authorize]
         public IActionResult ProposedClassDetails(int id)
         {
             var model = _service.GetProposedClassDetails(id);
-            if(model == null)
+            if (model == null)
             {
                 return NotFound();
             }

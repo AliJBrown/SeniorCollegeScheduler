@@ -1,6 +1,7 @@
 ﻿using SeniorCollegeScheduler.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SeniorCollegeScheduler.Controllers
 {
@@ -11,17 +12,9 @@ namespace SeniorCollegeScheduler.Controllers
             return View();
         }
 
-        public IActionResult About()
+        [Authorize]
+        public IActionResult MyInfo()
         {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
             return View();
         }
 
