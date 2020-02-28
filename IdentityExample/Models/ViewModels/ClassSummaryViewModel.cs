@@ -9,6 +9,7 @@ namespace SeniorCollegeScheduler.Models
         public string ProposedTitle { get; set; }
         public string InstructorName { get; set; }
         public string City { get; set; }
+        public string user { get; set; }
 
         public static ClassSummaryViewModel FromProposedClass(ProposedClass proposedClass)
         {
