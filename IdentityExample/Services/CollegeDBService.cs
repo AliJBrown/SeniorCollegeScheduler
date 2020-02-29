@@ -19,9 +19,7 @@ namespace SeniorCollegeScheduler
         {
             _context = context;
             _userManager = userManager;
-
         }
-
 
         public int CreateClassProposal(CreateClassCommand cmd)
         {
@@ -105,6 +103,7 @@ namespace SeniorCollegeScheduler
                 .OrderByDescending(x => x.ProposedDate)
                 .ToList();
         }
+
         public ICollection<ClassSummaryViewModel> GetReviewedProposals()
         {
             return _context.ProposedClass
@@ -114,7 +113,6 @@ namespace SeniorCollegeScheduler
                     ProposedID = x.ProposedID,
                     ProposedDate = x.ProposedDate,
                     ProposedTitle = x.ProposedTitle,
-
                 })
                 .OrderByDescending(x => x.ProposedDate)
                 .ToList();
@@ -179,8 +177,6 @@ namespace SeniorCollegeScheduler
                     SundayMorning = x.SundayMorning,
                     SundayAfternoon = x.SundayAfternoon,
                     SundayEvening = x.SundayEvening
-
-
                 })
                 .SingleOrDefault();
         }
@@ -189,7 +185,7 @@ namespace SeniorCollegeScheduler
         {
             bool IsFiled = _context.User
                 .Where(x => x.InstructorId == appUser.Id)
-                .Select(x => 
+                .Select(x =>
                     x.IsFiled
                 )
                 .SingleOrDefault();
@@ -222,7 +218,6 @@ namespace SeniorCollegeScheduler
 
         public void CreateInstructor(CreateInstructorCommand command, IdentityUser user)
         {
-
             var details = command.ToUser();
 
             details.InstructorId = user.Id;
@@ -231,11 +226,8 @@ namespace SeniorCollegeScheduler
             details.ShareLandline = CheckboxValue(command.ShareLandline);
             details.ShareEmail = CheckboxValue(command.ShareEmail);
 
-
             _context.Add(details);
             _context.SaveChanges();
-           
-
         }
     }
 }

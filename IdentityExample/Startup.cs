@@ -44,7 +44,7 @@ namespace SeniorCollegeScheduler
                 options.Password.RequireUppercase = true;
                 options.Password.RequiredUniqueChars = 2;
                 options.Password.RequiredLength = 8;
-
+                options.Password.RequireNonAlphanumeric = false;
 
                 //lockout settings
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
