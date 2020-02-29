@@ -4,7 +4,6 @@ namespace SeniorCollegeScheduler.Models.ViewModels
 {
     public class ClassDetailedViewModel
     {
-        
         public DateTime ProposedDate { get; set; }
         public int ProposalId { get; set; }
         public string ProposedTitle { get; set; }

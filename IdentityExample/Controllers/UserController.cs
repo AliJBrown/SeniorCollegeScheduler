@@ -12,7 +12,6 @@ namespace SeniorCollegeScheduler.Controllers
 {
     public class UserController : Controller
     {
-
         private readonly CollegeDBService _service;
         private readonly UserManager<IdentityUser> _userService;
 
@@ -27,7 +26,7 @@ namespace SeniorCollegeScheduler.Controllers
         {
             return View(new CreateInstructorCommand());
         }
-        
+
         [HttpPost]
         public async Task<IActionResult> Index(CreateInstructorCommand command)
         {
@@ -37,7 +36,6 @@ namespace SeniorCollegeScheduler.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    
                     if (HasFiled)
                     {
                         //TODO NEED TO CHANGE THIS TO INFORM USER THAT THEY HAVE MADE A PROPOSAL ALREADY
@@ -49,7 +47,6 @@ namespace SeniorCollegeScheduler.Controllers
                         _service.CreateInstructor(command, appUser);
                         return RedirectToAction(nameof(ProposalSuccess));
                     }
-                    
                 }
             }
             catch (Exception)
@@ -71,9 +68,7 @@ namespace SeniorCollegeScheduler.Controllers
         [Authorize]
         public async Task<IActionResult> ViewInstructorDetails()
         {
-            
             var appUser = await _userService.GetUserAsync(User);
-            
 
             if (_service.CheckIfFiled(appUser))
             {
@@ -81,7 +76,6 @@ namespace SeniorCollegeScheduler.Controllers
 
                 if (model == null)
                 {
-
                     return NotFound();
                 }
 
@@ -91,7 +85,6 @@ namespace SeniorCollegeScheduler.Controllers
             {
                 return RedirectToAction(nameof(Index));
             }
-            
         }
     }
 }
