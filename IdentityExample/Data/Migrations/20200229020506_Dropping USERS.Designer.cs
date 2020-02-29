@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SeniorCollegeScheduler.Data;
 
 namespace SeniorCollegeScheduler.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200229020506_Dropping USERS")]
+    partial class DroppingUSERS
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -182,54 +184,6 @@ namespace SeniorCollegeScheduler.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("SeniorCollegeScheduler.Models.DataModels.User", b =>
-                {
-                    b.Property<int>("InstructorInfoId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("City")
-                        .HasMaxLength(25);
-
-                    b.Property<string>("FirstName")
-                        .HasMaxLength(25);
-
-                    b.Property<string>("InstructorBio");
-
-                    b.Property<string>("InstructorId")
-                        .HasMaxLength(40);
-
-                    b.Property<bool>("IsFiled");
-
-                    b.Property<string>("LandlinePhone")
-                        .HasMaxLength(10);
-
-                    b.Property<string>("LastName")
-                        .HasMaxLength(25);
-
-                    b.Property<string>("MobilePhone")
-                        .HasMaxLength(10);
-
-                    b.Property<bool>("ShareEmail");
-
-                    b.Property<bool>("ShareLandline");
-
-                    b.Property<bool>("ShareMobilePhone");
-
-                    b.Property<string>("State")
-                        .HasMaxLength(2);
-
-                    b.Property<string>("StreetAddress")
-                        .HasMaxLength(45);
-
-                    b.Property<string>("ZipCode")
-                        .HasMaxLength(5);
-
-                    b.HasKey("InstructorInfoId");
-
-                    b.ToTable("User");
                 });
 
             modelBuilder.Entity("SeniorCollegeScheduler.Models.ProposedClass", b =>
