@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿
+@inject CollegeDBService dbService
+@inject UserManager<IdentityUser> UserManager
+@inject SignInManager<IdentityUser> SignInManager
+
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -31,9 +37,23 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Class" asp-action="CreateProposal">Form</a></li>
-                    <li><a asp-area="" asp-controller="Class" asp-action="ProposedClassesOverview">Proposed Classes</a></li>
-                    <li><a asp-area="" asp-controller="Class" asp-action="ReviewedClassesOverview">Reviewed Classes</a></li>
+
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        var appUser = await UserManager.GetUserAsync(User);
+                        <li><a asp-area="" asp-controller="Class" asp-action="CreateProposal">Form</a></li>
+                        <li><a asp-area="" asp-controller="Class" asp-action="ProposedClassesOverview">Proposed Classes</a></li>
+                        <li><a asp-area="" asp-controller="Class" asp-action="ReviewedClassesOverview">Reviewed Classes</a></li>
+                        if (!dbService.CheckIfFiled(appUser))
+                        {
+                        <li><a asp-area="" asp-controller="User" asp-action="Index">Fill Out Your Instructor Info</a></li>
+                        }
+                        if (dbService.CheckIfFiled(appUser))
+                        {
+                            <li><a asp-area="" asp-controller="User" asp-action="ViewInstructorDetails">View Instructor</a></li>
+                        }
+                    }
+
 
                 </ul>
                 <partial name="_LoginPartial" />

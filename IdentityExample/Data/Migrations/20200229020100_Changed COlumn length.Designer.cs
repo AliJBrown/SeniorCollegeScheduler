@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SeniorCollegeScheduler.Data;
 
 namespace SeniorCollegeScheduler.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200229020100_Changed COlumn length")]
+    partial class ChangedCOlumnlength
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -186,9 +188,8 @@ namespace SeniorCollegeScheduler.Data.Migrations
 
             modelBuilder.Entity("SeniorCollegeScheduler.Models.DataModels.User", b =>
                 {
-                    b.Property<int>("InstructorInfoId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<Guid>("InstructorInfoId")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("City")
                         .HasMaxLength(25);

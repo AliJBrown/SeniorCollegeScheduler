@@ -15,17 +15,17 @@ namespace SeniorCollegeScheduler
         private readonly ApplicationDbContext _context;
         private readonly UserManager<IdentityUser> _userManager;
 
-        public CollegeDBService(ApplicationDbContext context)
+        public CollegeDBService(ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
+
         }
 
 
         public int CreateClassProposal(CreateClassCommand cmd)
         {
             var proposal = cmd.ToProposal();
-
-
 
             proposal.StipendRequested = CheckboxValue(cmd.StipendRequested);
 
@@ -183,6 +183,59 @@ namespace SeniorCollegeScheduler
 
                 })
                 .SingleOrDefault();
+        }
+
+        public bool CheckIfFiled(IdentityUser appUser)
+        {
+            bool IsFiled = _context.User
+                .Where(x => x.InstructorId == appUser.Id)
+                .Select(x => 
+                    x.IsFiled
+                )
+                .SingleOrDefault();
+            Debug.WriteLine(IsFiled);
+            return IsFiled;
+        }
+
+        public InstructorDetailsViewModel GetInstructorDetails(IdentityUser appUser)
+        {
+            Debug.WriteLine("NOT FOUND");
+            return _context.User
+                .Where(x => x.InstructorId.Equals(appUser.Id))
+                .Select(x => new InstructorDetailsViewModel
+                {
+                    FirstName = x.FirstName,
+                    LastName = x.LastName,
+                    StreetAddress = x.StreetAddress,
+                    City = x.City,
+                    State = x.State,
+                    ZipCode = x.ZipCode,
+                    ShareEmail = x.ShareEmail,
+                    ShareLandline = x.ShareLandline,
+                    ShareMobilePhone = x.ShareMobilePhone,
+                    LandlinePhone = x.LandlinePhone,
+                    MobilePhone = x.MobilePhone,
+                    InstructorBio = x.InstructorBio
+                })
+                .SingleOrDefault();
+        }
+
+        public void CreateInstructor(CreateInstructorCommand command, IdentityUser user)
+        {
+
+            var details = command.ToUser();
+
+            details.InstructorId = user.Id;
+
+            details.ShareMobilePhone = CheckboxValue(command.ShareMobilePhone);
+            details.ShareLandline = CheckboxValue(command.ShareLandline);
+            details.ShareEmail = CheckboxValue(command.ShareEmail);
+
+
+            _context.Add(details);
+            _context.SaveChanges();
+           
+
         }
     }
 }

@@ -19,9 +19,20 @@ namespace SeniorCollegeScheduler.Controllers
         }
 
         [Authorize]
-        public IActionResult CreateProposal()
+        public async Task<IActionResult> CreateProposal()
         {
-            return View(new CreateClassCommand());
+            var appUser = await _userService.GetUserAsync(User);
+            bool HasFiled = _service.CheckIfFiled(appUser);
+            if (HasFiled)
+            {
+                return View(new CreateClassCommand());
+            }
+            return RedirectToAction(nameof(UserInformationNeeded));
+        }
+
+        public IActionResult UserInformationNeeded()
+        {
+            return View();
         }
 
         [HttpPost]
