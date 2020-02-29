@@ -6,12 +6,10 @@ namespace SeniorCollegeScheduler.Data.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-
         }
     }
 }
