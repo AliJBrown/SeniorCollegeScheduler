@@ -1,0 +1,59 @@
+﻿@model SeniorCollegeScheduler.Models.ViewModels.CreateInstructorCommand
+@{
+    ViewData["Title"] = "User Information";
+}
+
+    <form asp-controller="User" asp-action="Index" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <label asp-for="FirstName"></label>
+        <input class="form-control" asp-for="FirstName" />
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+
+        <label asp-for="LastName"></label>
+        <input class="form-control" asp-for="LastName" />
+        <span asp-validation-for="LastName" class="text-danger"></span>
+
+        <label asp-for="StreetAddress"></label>
+        <input class="form-control" asp-for="StreetAddress" />
+        <span asp-validation-for="StreetAddress" class="text-danger"></span>
+
+        <label asp-for="City"></label>
+        <input class="form-control" asp-for="City" />
+        <span asp-validation-for="City" class="text-danger"></span>
+
+        <label asp-for="State"></label>
+        <input class="form-control" asp-for="State" />
+        <span asp-validation-for="State" class="text-danger"></span>
+
+        <label asp-for="ZipCode"></label>
+        <input class="form-control" asp-for="ZipCode" />
+        <span asp-validation-for="ZipCode" class="text-danger"></span>
+
+        <label asp-for="LandlinePhone"></label>
+        <input class="form-control" asp-for="LandlinePhone" />
+        <span asp-validation-for="LandlinePhone" class="text-danger"></span>
+
+        <label asp-for="MobilePhone"></label>
+        <input class="form-control" asp-for="MobilePhone" />
+        <span asp-validation-for="MobilePhone" class="text-danger"></span>
+
+        <label asp-for="ShareEmail"></label>
+        <input class="form-control" asp-for="ShareEmail" type="checkbox" value="true" />
+        <span asp-validation-for="ShareEmail" class="text-danger"></span>
+
+        <label asp-for="ShareMobilePhone"></label>
+        <input class="form-control" asp-for="ShareMobilePhone" type="checkbox" value="true" />
+        <span asp-validation-for="ShareMobilePhone" class="text-danger"></span>
+
+        <label asp-for="ShareLandline"></label>
+        <input class="form-control" asp-for="ShareLandline" type="checkbox" value="true" />
+        <span asp-validation-for="ShareLandline" class="text-danger"></span>
+
+
+        <label asp-for="InstructorBio"></label>
+        <input class="form-control" asp-for="InstructorBio" />
+        <span asp-validation-for="InstructorBio" class="text-danger"></span>
+
+        <button type="submit" class="btn btn-primary"> Submit </button>
+    </form>
+

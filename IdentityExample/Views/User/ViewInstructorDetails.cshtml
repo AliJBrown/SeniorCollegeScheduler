@@ -1,0 +1,26 @@
+﻿@model SeniorCollegeScheduler.Models.ViewModels.InstructorDetailsViewModel
+@{
+    ViewData["Title"] = "InstructorDetails";
+}
+
+
+    <div style="text-align: center;margin:auto; width: 75%">
+        <h2>Instructor Details</h2>
+        <div style="float:left">
+            <h4>First Name: @Model.FirstName</h4>
+            <h4>Last Name: @Model.LastName</h4>
+        </div>
+        <div style="float:right; display:inline-block">
+            <h4> Address: </h4>
+            <h4>@Model.StreetAddress, @Model.City, @Model.State</h4>
+            <h4> Zip Code: @Model.ZipCode</h4>
+        </div>
+        <div style="clear:both">
+            <h4>Share Email: @Model.ShareEmail</h4>
+            <h4>Share Mobile: @Model.ShareMobilePhone</h4>
+            <h4>Share Landline: @Model.ShareLandline</h4>
+        </div>
+        <h4>Landline Phone: @Model.LandlinePhone</h4>
+        <h4>Mobile Phone: @Model.MobilePhone</h4>
+        <h4>Instructor Bio: @Model.InstructorBio</h4>
+    </div>
