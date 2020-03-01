@@ -21,14 +21,14 @@
 
             @foreach (var proposedClass in Model)
             {
-                <tr>
-                    <td>@proposedClass.ProposedID</td>
-                    <td>@proposedClass.ProposedDate</td>
-                    <td>@proposedClass.ProposedTitle</td>
-                    <td>N/A</td>
-                    <td>N/A</td>
-                    <td><a asp-action="ProposedClassDetails" asp-route-id="@proposedClass.ProposedID" class="btn">View</a></td>
-                </tr>
+            <tr>
+                <td>@proposedClass.ProposedID</td>
+                <td>@proposedClass.ProposedDate</td>
+                <td>@proposedClass.ProposedTitle</td>
+                <td>@proposedClass.InstructorName</td>
+                <td>@proposedClass.City</td>
+                <td><a asp-action="ProposedClassDetails" asp-route-id="@proposedClass.ProposedID" class="btn">View</a></td>
+            </tr>
             }
         </tbody>
     </table>

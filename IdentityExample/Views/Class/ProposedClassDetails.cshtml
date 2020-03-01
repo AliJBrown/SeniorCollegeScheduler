@@ -90,6 +90,8 @@
 
 <div style="clear: both"></div>
 
+<a asp-controller="User" asp-action="ViewProposedInstructorDetails" asp-route-id="@Model.ProposedById" class="btn btn-primary" style="float:right">View Instructor Information</a>
+
 @if (Model.IsReviewed == false)
 {
     <form asp-action="MarkProposalReviewed" asp-route-id="@Model.ProposalId">

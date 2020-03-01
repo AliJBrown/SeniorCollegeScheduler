@@ -1,0 +1,40 @@
+﻿@model SeniorCollegeScheduler.Models.ViewModels.InstructorDetailsViewModel
+@{
+    ViewData["Title"] = "InstructorDetails";
+}
+
+
+<div style="text-align: center;margin:auto; width: 75%">
+    <h2>Instructor Information </h2>
+    <div>
+        <h4>Name: @Model.FirstName @Model.LastName</h4>
+    </div>
+    <div>
+        <h4> Address: @Model.StreetAddress, @Model.City, @Model.State</h4>
+        <h4> Zip Code: @Model.ZipCode</h4>
+    </div>
+
+    <h4>Landline Phone: @String.Format("{0:(###) ###-####)}", Model.LandlinePhone)</h4>
+    <h4>Mobile Phone: @Model.MobilePhone</h4>
+    <h4>Instructor Bio: @Model.InstructorBio</h4>
+    <div>
+        @if (Model.ShareEmail == true)
+        {
+            <h4>Share Email: Yes</h4>
+        }
+        else
+        {<h4>Share Email: No</h4>}
+        @if (Model.ShareLandline == true)
+        {
+            <h4>Share Landline Phone: Yes</h4>
+        }
+        else
+        {<h4>Share Landline: No</h4>}
+        @if (Model.ShareMobilePhone == true)
+        {
+            <h4>Share Mobile Phone: Yes</h4>
+        }
+        else
+        {<h4>Share Mobile Phone: No</h4>}
+    </div>
+</div>

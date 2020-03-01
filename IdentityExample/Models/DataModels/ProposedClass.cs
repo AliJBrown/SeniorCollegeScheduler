@@ -7,7 +7,7 @@ namespace SeniorCollegeScheduler.Models
     {
         [Key]
         public int ProposedID { get; set; }
-
+        public string ProposedById { get; set; }
         public DateTime ProposedDate { get; set; }
         public string ProposedTitle { get; set; }
         public bool IsReviewed { get; set; }
