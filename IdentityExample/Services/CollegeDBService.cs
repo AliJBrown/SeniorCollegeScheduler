@@ -1,11 +1,14 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using SeniorCollegeScheduler.Data;
 using SeniorCollegeScheduler.Models;
+using SeniorCollegeScheduler.Models.DataModels;
 using SeniorCollegeScheduler.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace SeniorCollegeScheduler
@@ -13,9 +16,9 @@ namespace SeniorCollegeScheduler
     public class CollegeDBService
     {
         private readonly ApplicationDbContext _context;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<MyIdentityUser> _userManager;
 
-        public CollegeDBService(ApplicationDbContext context, UserManager<IdentityUser> userManager)
+        public CollegeDBService(ApplicationDbContext context, UserManager<MyIdentityUser> userManager)
         {
             _context = context;
             _userManager = userManager;
@@ -102,21 +105,21 @@ namespace SeniorCollegeScheduler
                     ProposedTitle = x.ProposedTitle,
 
                     //Two Queries to grab first then last name
-                    InstructorName = _context.User
+                    InstructorName = _context.MyIdentityUser
                     .Where(y => y.InstructorId == x.ProposedById)
-                    .Select(y => y.FirstName).SingleOrDefault() 
-                    + " " + _context.User
+                    .Select(y => y.FirstName).SingleOrDefault()
+                    + " " + _context.MyIdentityUser
                     .Where(y => y.InstructorId == x.ProposedById)
                     .Select(y => y.LastName).SingleOrDefault(),
 
-                    City = _context.User
+                    City = _context.MyIdentityUser
                     .Where(y => y.InstructorId == x.ProposedById)
                     .Select(y => y.City).SingleOrDefault(),
 
                 })
                 .OrderByDescending(x => x.ProposedDate)
                 .ToList();
-            
+
         }
 
         public ICollection<ClassSummaryViewModel> GetReviewedProposals()
@@ -130,14 +133,14 @@ namespace SeniorCollegeScheduler
                     ProposedTitle = x.ProposedTitle,
 
                     //Two Queries to grab first then last name
-                    InstructorName = _context.User
+                    InstructorName = _context.MyIdentityUser
                     .Where(y => y.InstructorId == x.ProposedById)
                     .Select(y => y.FirstName).SingleOrDefault()
-                    + " " + _context.User
+                    + " " + _context.MyIdentityUser
                     .Where(y => y.InstructorId == x.ProposedById)
                     .Select(y => y.LastName).SingleOrDefault(),
 
-                    City = _context.User
+                    City = _context.MyIdentityUser
                     .Where(y => y.InstructorId == x.ProposedById)
                     .Select(y => y.City).SingleOrDefault(),
                 })
@@ -211,7 +214,7 @@ namespace SeniorCollegeScheduler
 
         public bool CheckIfFiled(IdentityUser appUser)
         {
-            bool IsFiled = _context.User
+            bool IsFiled = _context.MyIdentityUser
                 .Where(x => x.InstructorId == appUser.Id)
                 .Select(x =>
                     x.IsFiled
@@ -223,8 +226,8 @@ namespace SeniorCollegeScheduler
 
         public InstructorDetailsViewModel GetInstructorDetails(IdentityUser appUser)
         {
-            
-            return _context.User
+
+            return _context.MyIdentityUser
                 .Where(x => x.InstructorId.Equals(appUser.Id))
                 .Select(x => new InstructorDetailsViewModel
                 {
@@ -247,7 +250,7 @@ namespace SeniorCollegeScheduler
         public InstructorDetailsViewModel GetInstructorDetails(string appUser)
         {
             Debug.WriteLine("Calling CORECT METHOD");
-            var model = _context.User
+            var model = _context.MyIdentityUser
                 .Where(x => x.InstructorId.Equals(appUser))
                 .Select(x => new InstructorDetailsViewModel
                 {
