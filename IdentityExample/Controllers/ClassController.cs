@@ -73,7 +73,7 @@ namespace SeniorCollegeScheduler.Controllers
             return View(models);
         }
 
-        [Authorize(Policy = "Admin")]
+        [Authorize(Roles = "Admin")]
         //[Authorize]
         public IActionResult ReviewedClassesOverview()
         {
