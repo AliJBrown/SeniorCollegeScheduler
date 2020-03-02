@@ -9,7 +9,7 @@ namespace SeniorCollegeScheduler.Models
         public string ProposedTitle { get; set; }
         public string InstructorName { get; set; }
         public string City { get; set; }
-        public string user { get; set; }
+        
 
         public static ClassSummaryViewModel FromProposedClass(ProposedClass proposedClass)
         {
@@ -18,8 +18,7 @@ namespace SeniorCollegeScheduler.Models
                 ProposedID = proposedClass.ProposedID,
                 ProposedDate = proposedClass.ProposedDate,
                 ProposedTitle = proposedClass.ProposedTitle,
-                //InstructorName = proposedClass.ProposedByInstructor,
-                //City = proposedClass.City
+                
             };
         }
     }

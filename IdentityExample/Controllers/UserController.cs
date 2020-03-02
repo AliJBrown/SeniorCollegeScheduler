@@ -86,5 +86,20 @@ namespace SeniorCollegeScheduler.Controllers
                 return RedirectToAction(nameof(Index));
             }
         }
+        
+        
+        public IActionResult ViewProposedInstructorDetails(string id)
+        {
+            Debug.WriteLine("calling instructor details");
+            var model = _service.GetInstructorDetails(id);
+
+            if (model == null)
+            {
+                return NotFound();
+            }
+
+            return View(model);
+            
+        }
     }
 }

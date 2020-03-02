@@ -36,13 +36,14 @@ namespace SeniorCollegeScheduler.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateProposal(CreateClassCommand command)
+        public async Task<IActionResult> CreateProposal(CreateClassCommand command)
         {
+            var appUser = await _userService.GetUserAsync(User);
             try
             {
                 if (ModelState.IsValid)
                 {
-                    var id = _service.CreateClassProposal(command);
+                    var id = _service.CreateClassProposal(command, appUser);
                     return RedirectToAction(nameof(ProposedClassDetails), new { id = id });
                 }
             }
@@ -68,7 +69,7 @@ namespace SeniorCollegeScheduler.Controllers
         public async Task<IActionResult> ProposedClassesOverview()
         {
             var appUser = await _userService.GetUserAsync(User);
-            var models = _service.GetProposals(appUser);
+            var models = _service.GetProposals();
             return View(models);
         }
 
