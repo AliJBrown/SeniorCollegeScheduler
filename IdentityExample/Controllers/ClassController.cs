@@ -73,7 +73,8 @@ namespace SeniorCollegeScheduler.Controllers
             return View(models);
         }
 
-        [Authorize]
+        [Authorize(Policy = "Admin")]
+        //[Authorize]
         public IActionResult ReviewedClassesOverview()
         {
             var models = _service.GetReviewedProposals();

@@ -1,7 +1,8 @@
-﻿
+﻿@using SeniorCollegeScheduler.Models.DataModels;
+
 @inject CollegeDBService dbService
-@inject UserManager<IdentityUser> UserManager
-@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<MyIdentityUser> UserManager
+@inject SignInManager<MyIdentityUser> SignInManager
 
 
 <!DOCTYPE html>
@@ -46,7 +47,7 @@
                         <li><a asp-area="" asp-controller="Class" asp-action="ReviewedClassesOverview">Reviewed Classes</a></li>
                         if (!dbService.CheckIfFiled(appUser))
                         {
-                        <li><a asp-area="" asp-controller="User" asp-action="Index">Fill Out Your Instructor Info</a></li>
+                            <li><a asp-area="" asp-controller="User" asp-action="Index">Fill Out Your Instructor Info</a></li>
                         }
                         if (dbService.CheckIfFiled(appUser))
                         {

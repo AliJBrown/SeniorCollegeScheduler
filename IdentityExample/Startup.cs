@@ -8,6 +8,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Threading.Tasks;
+using SeniorCollegeScheduler.Models.DataModels;
+using System.Security.Claims;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace SeniorCollegeScheduler
 {
@@ -23,6 +27,7 @@ namespace SeniorCollegeScheduler
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -33,8 +38,14 @@ namespace SeniorCollegeScheduler
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddDefaultIdentity<MyIdentityUser>().AddRoles<UserRole>()
+            //.AddRoleManager<RoleManager<UserRole>>()
+            //.AddUserManager<UserManager<MyIdentityUser>>()
+            //.AddSignInManager<SignInManager<MyIdentityUser>()
+            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultTokenProviders();
+
+            services.TryAddScoped<SignInManager<MyIdentityUser>>();
 
             services.Configure<IdentityOptions>(options =>
             {
@@ -55,6 +66,15 @@ namespace SeniorCollegeScheduler
                 options.User.AllowedUserNameCharacters =
                 "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
                 options.User.RequireUniqueEmail = true;
+            });
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy(
+                    "IsAdmin",
+                    policy => policy
+                    .RequireRole("Admin")
+                    );
             });
 
             services.ConfigureApplicationCookie(options =>
@@ -83,8 +103,9 @@ namespace SeniorCollegeScheduler
             services.AddScoped<CollegeDBService>();
         }
 
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, UserManager<MyIdentityUser> userManager, RoleManager<UserRole> roleManager)
         {
             if (env.IsDevelopment())
             {
@@ -97,11 +118,16 @@ namespace SeniorCollegeScheduler
                 app.UseHsts();
             }
 
+
+
             app.UseHttpsRedirection();
+            //app.UseIdentity();
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
             app.UseAuthentication();
+
+            MyIdentityDataInitializer.SeedData(userManager, roleManager);
 
             app.UseMvc(routes =>
             {

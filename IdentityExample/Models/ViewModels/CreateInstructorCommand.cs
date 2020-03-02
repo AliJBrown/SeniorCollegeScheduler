@@ -48,9 +48,9 @@ namespace SeniorCollegeScheduler.Models.ViewModels
         [Display(Name = "Instructor Bio")]
         public string InstructorBio { get; set; }
 
-        public User ToUser()
+        public MyIdentityUser ToUser()
         {
-            return new User
+            return new MyIdentityUser
             {
                 FirstName = FirstName,
                 LastName = LastName,
