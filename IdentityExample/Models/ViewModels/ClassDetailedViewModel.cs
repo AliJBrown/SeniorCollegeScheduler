@@ -5,6 +5,7 @@ namespace SeniorCollegeScheduler.Models.ViewModels
     public class ClassDetailedViewModel
     {
         public DateTime ProposedDate { get; set; }
+        public string InstructorName { get; set; }
         public string ProposedById { get; set; }
         public int ProposalId { get; set; }
         public string ProposedTitle { get; set; }

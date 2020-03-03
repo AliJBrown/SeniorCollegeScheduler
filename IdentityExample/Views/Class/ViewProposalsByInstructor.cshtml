@@ -1,44 +1,36 @@
 ﻿@model ICollection<ClassSummaryViewModel>
 @{
-    ViewData["Title"] = "Proposed Classes";
+    ViewData["Title"] = "ViewProposalsByInstructor";
 }
 
-
-<h2 style="text-align:center;"> @ViewData["Title"]</h2>
-
-<form asp-action="FilterClassesByInstructorName" style="text-align:center">
-    <label style="margin: 5px;">Search For Proposal By Instructor Name: </label><input type="text" name="InstructorName" />
-    <input type="submit" class="btn btn-default" value="Search" />
-</form>
+<h2 style="text-align:center;"> @ViewBag.InstructorName's Proposals</h2>
 
 <div class="table-responsive">
-    
+
     <table class="table table-striped recipe">
         <thead>
             <tr>
-               
+
                 <th>Proposed Date</th>
                 <th>Proposed Title</th>
                 <th>Instructor Name</th>
                 <th>City</th>
-                <th></th>
+                <th>Proposal Reviewed</th>
             </tr>
         </thead>
         <tbody>
 
             @foreach (var proposedClass in Model)
             {
-            <tr>
-                @if (proposedClass.InstructorName != null)
-                {
+                <tr>
+
                     <td>@proposedClass.ProposedDate</td>
                     <td>@proposedClass.ProposedTitle</td>
                     <td>@proposedClass.InstructorName</td>
                     <td>@proposedClass.City</td>
-                    
+                    <td>@proposedClass.IsReviewed</td>
                     <td><a asp-action="ProposedClassDetails" asp-route-id="@proposedClass.ProposedID" class="btn btn-default">View</a></td>
-                }
-            </tr>
+                </tr>
             }
         </tbody>
     </table>

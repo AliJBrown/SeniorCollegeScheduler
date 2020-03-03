@@ -107,19 +107,82 @@ namespace SeniorCollegeScheduler
                     //Two Queries to grab first then last name
                     InstructorName = _context.MyIdentityUser
                     .Where(y => y.InstructorId == x.ProposedById)
-                    .Select(y => y.FirstName).SingleOrDefault()
+                    .Select(y => y.FirstName).FirstOrDefault()
                     + " " + _context.MyIdentityUser
                     .Where(y => y.InstructorId == x.ProposedById)
-                    .Select(y => y.LastName).SingleOrDefault(),
+                    .Select(y => y.LastName).FirstOrDefault(),
 
                     City = _context.MyIdentityUser
                     .Where(y => y.InstructorId == x.ProposedById)
-                    .Select(y => y.City).SingleOrDefault(),
+                    .Select(y => y.City).FirstOrDefault(),
 
                 })
                 .OrderByDescending(x => x.ProposedDate)
                 .ToList();
 
+        }
+        
+        //Filters by ID
+        public ICollection<ClassSummaryViewModel> GetProposalsByInstructorId(string id)
+        {
+            
+
+            return _context.ProposedClass
+                .Where(x => id.Equals(x.ProposedById))
+                .Select(x => new ClassSummaryViewModel
+                {
+                    ProposedID = x.ProposedID,
+                    ProposedDate = x.ProposedDate,
+                    ProposedTitle = x.ProposedTitle,
+                    IsReviewed = x.IsReviewed,
+
+                    //Two Queries to grab first then last name
+                    InstructorName = _context.MyIdentityUser
+                    .Where(y => y.InstructorId == x.ProposedById)
+                    .Select(y => y.FirstName).FirstOrDefault()
+                    + " " + _context.MyIdentityUser
+                    .Where(y => y.InstructorId == x.ProposedById)
+                    .Select(y => y.LastName).FirstOrDefault(),
+
+                    City = _context.MyIdentityUser
+                    .Where(y => y.InstructorId == x.ProposedById)
+                    .Select(y => y.City).FirstOrDefault(),
+                })
+                .OrderByDescending(x => x.ProposedDate)
+                .ToList();
+        }
+
+        //Filters by Name
+        public ICollection<ClassSummaryViewModel> FilterClassesByInstructor(string name)
+        {
+            name = name.ToLower();
+            string InstructorId = _context.MyIdentityUser
+                .Where(y => name.Equals((y.FirstName + " " +  y.LastName).ToLower()))
+                .Select(y => y.InstructorId).FirstOrDefault();
+
+            return _context.ProposedClass
+                .Where(x => InstructorId.Equals(x.ProposedById))
+                .Select(x => new ClassSummaryViewModel
+                {
+                    ProposedID = x.ProposedID,
+                    ProposedDate = x.ProposedDate,
+                    ProposedTitle = x.ProposedTitle,
+                    IsReviewed = x.IsReviewed,
+
+                    //Two Queries to grab first then last name
+                    InstructorName = _context.MyIdentityUser
+                    .Where(y => y.InstructorId == x.ProposedById)
+                    .Select(y => y.FirstName).FirstOrDefault()
+                    + " " + _context.MyIdentityUser
+                    .Where(y => y.InstructorId == x.ProposedById)
+                    .Select(y => y.LastName).FirstOrDefault(),
+
+                    City = _context.MyIdentityUser
+                    .Where(y => y.InstructorId == x.ProposedById)
+                    .Select(y => y.City).FirstOrDefault(),
+                })
+                .OrderByDescending(x => x.ProposedDate)
+                .ToList();
         }
 
         public ICollection<ClassSummaryViewModel> GetReviewedProposals()
@@ -135,14 +198,14 @@ namespace SeniorCollegeScheduler
                     //Two Queries to grab first then last name
                     InstructorName = _context.MyIdentityUser
                     .Where(y => y.InstructorId == x.ProposedById)
-                    .Select(y => y.FirstName).SingleOrDefault()
+                    .Select(y => y.FirstName).FirstOrDefault()
                     + " " + _context.MyIdentityUser
                     .Where(y => y.InstructorId == x.ProposedById)
-                    .Select(y => y.LastName).SingleOrDefault(),
+                    .Select(y => y.LastName).FirstOrDefault(),
 
                     City = _context.MyIdentityUser
                     .Where(y => y.InstructorId == x.ProposedById)
-                    .Select(y => y.City).SingleOrDefault(),
+                    .Select(y => y.City).FirstOrDefault(),
                 })
                 .OrderByDescending(x => x.ProposedDate)
                 .ToList();
@@ -164,6 +227,10 @@ namespace SeniorCollegeScheduler
                 .Select(x => new ClassDetailedViewModel
                 {
                     ProposedById = x.ProposedById,
+                    InstructorName = _context.MyIdentityUser
+                    .Where(y => x.ProposedById.Equals(y.InstructorId))
+                    .Select(y => y.FirstName + " " + y.LastName).SingleOrDefault(),
+
                     ProposedDate = x.ProposedDate,
                     ProposedTitle = x.ProposedTitle,
                     ProposalId = x.ProposedID,
@@ -224,6 +291,8 @@ namespace SeniorCollegeScheduler
             return IsFiled;
         }
 
+        //ALL METHODS BELOW ARE FOR INSTRUCTOR DETAILS
+
         public InstructorDetailsViewModel GetInstructorDetails(IdentityUser appUser)
         {
 
@@ -240,9 +309,10 @@ namespace SeniorCollegeScheduler
                     ShareEmail = x.ShareEmail,
                     ShareLandline = x.ShareLandline,
                     ShareMobilePhone = x.ShareMobilePhone,
-                    LandlinePhone = x.LandlinePhone,
-                    MobilePhone = x.MobilePhone,
-                    InstructorBio = x.InstructorBio
+                    LandlinePhone = FormatPhoneNumber(x.LandlinePhone),
+                    MobilePhone = FormatPhoneNumber(x.MobilePhone),
+                    InstructorBio = x.InstructorBio,
+                    
                 })
                 .SingleOrDefault();
         }
@@ -268,9 +338,9 @@ namespace SeniorCollegeScheduler
                     InstructorBio = x.InstructorBio
                 })
                 .SingleOrDefault();
-            //NEED TO FORMAT PHONE NUMBERS!!!!!!!!!
-            //model.LandlinePhone = FormatPhoneNumber(model.LandlinePhone);
-            //model.MobilePhone = FormatPhoneNumber(model.MobilePhone);
+            
+            model.LandlinePhone = FormatPhoneNumber(model.LandlinePhone);
+            model.MobilePhone = FormatPhoneNumber(model.MobilePhone);
 
             return model;
         }
@@ -289,5 +359,52 @@ namespace SeniorCollegeScheduler
             _context.SaveChanges();
         }
 
+        public ICollection<UserSummaryViewModel> GetAllUsers()
+        {
+            return _context.MyIdentityUser
+                .Select(x => new UserSummaryViewModel
+                {
+                    State = x.State,
+                    City = x.City,
+                    UserId = x.InstructorId,
+                    InstructorName = x.FirstName + " " + x.LastName,
+                    MobilePhone = FormatPhoneNumber(x.MobilePhone)
+
+                })
+                .ToList();
+        }
+
+        public ICollection<UserSummaryViewModel> FilterUsersByName(string InstructorName)
+        {
+            return _context.MyIdentityUser
+                .Where(x => InstructorName.ToLower().Equals((x.FirstName + " " + x.LastName).ToLower()))
+                .Select(x => new UserSummaryViewModel
+                {
+                    State = x.State,
+                    City = x.City,
+                    UserId = x.InstructorId,
+                    InstructorName = x.FirstName + " " + x.LastName,
+                    MobilePhone = FormatPhoneNumber(x.MobilePhone)
+                })
+                .ToList();
+        }
+
+        public string FormatPhoneNumber(string phone)
+        {
+            if(phone == null)
+            {
+                return "";
+            }
+
+            
+            return "(" + phone.Substring(0, 3) + ") " + phone.Substring(3, 3) + "-" + phone.Substring(6,4);
+        }
+
+        public string GetInstructorName(string id)
+        {
+            return _context.MyIdentityUser
+                .Where(x => x.InstructorId.Equals(id))
+                .Select(x => x.FirstName + " " + x.LastName).SingleOrDefault();
+        }
     }
 }
