@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using SeniorCollegeScheduler.Models.DataModels;
 using SeniorCollegeScheduler.Models.ViewModels;
 using System;
 using System.Threading.Tasks;
@@ -10,9 +11,9 @@ namespace SeniorCollegeScheduler.Controllers
     public class ClassController : Controller
     {
         private readonly CollegeDBService _service;
-        private readonly UserManager<IdentityUser> _userService;
+        private readonly UserManager<MyIdentityUser> _userService;
 
-        public ClassController(CollegeDBService service, UserManager<IdentityUser> userService)
+        public ClassController(CollegeDBService service, UserManager<MyIdentityUser> userService)
         {
             _service = service;
             _userService = userService;
@@ -66,15 +67,20 @@ namespace SeniorCollegeScheduler.Controllers
         }
 
         [Authorize]
-        public async Task<IActionResult> ProposedClassesOverview()
+        public IActionResult ProposedClassesOverview()
         {
-            var appUser = await _userService.GetUserAsync(User);
+            //var appUser = await _userService.GetUserAsync(User);
+            
             var models = _service.GetProposals();
+            if(models == null)
+            {
+                return NotFound();
+            }
             return View(models);
         }
 
-        [Authorize(Roles = "Admin")]
-        //[Authorize]
+        //[Authorize(Roles = "Admin")]
+        [Authorize]
         public IActionResult ReviewedClassesOverview()
         {
             var models = _service.GetReviewedProposals();

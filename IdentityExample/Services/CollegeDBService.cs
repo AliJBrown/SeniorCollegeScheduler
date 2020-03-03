@@ -107,14 +107,14 @@ namespace SeniorCollegeScheduler
                     //Two Queries to grab first then last name
                     InstructorName = _context.MyIdentityUser
                     .Where(y => y.InstructorId == x.ProposedById)
-                    .Select(y => y.FirstName).SingleOrDefault()
+                    .Select(y => y.FirstName).FirstOrDefault()
                     + " " + _context.MyIdentityUser
                     .Where(y => y.InstructorId == x.ProposedById)
-                    .Select(y => y.LastName).SingleOrDefault(),
+                    .Select(y => y.LastName).FirstOrDefault(),
 
                     City = _context.MyIdentityUser
                     .Where(y => y.InstructorId == x.ProposedById)
-                    .Select(y => y.City).SingleOrDefault(),
+                    .Select(y => y.City).FirstOrDefault(),
 
                 })
                 .OrderByDescending(x => x.ProposedDate)
@@ -135,14 +135,14 @@ namespace SeniorCollegeScheduler
                     //Two Queries to grab first then last name
                     InstructorName = _context.MyIdentityUser
                     .Where(y => y.InstructorId == x.ProposedById)
-                    .Select(y => y.FirstName).SingleOrDefault()
+                    .Select(y => y.FirstName).FirstOrDefault()
                     + " " + _context.MyIdentityUser
                     .Where(y => y.InstructorId == x.ProposedById)
-                    .Select(y => y.LastName).SingleOrDefault(),
+                    .Select(y => y.LastName).FirstOrDefault(),
 
                     City = _context.MyIdentityUser
                     .Where(y => y.InstructorId == x.ProposedById)
-                    .Select(y => y.City).SingleOrDefault(),
+                    .Select(y => y.City).FirstOrDefault(),
                 })
                 .OrderByDescending(x => x.ProposedDate)
                 .ToList();
