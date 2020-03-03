@@ -87,6 +87,19 @@ namespace SeniorCollegeScheduler.Controllers
             return View(models);
         }
 
+        public IActionResult ViewProposalsByInstructor(string id)
+        {
+            ViewBag.InstructorName = _service.GetInstructorName(id);
+
+            var models = _service.GetProposalsByInstructorId(id);
+            if (models == null)
+            {
+                return NotFound();
+            }
+
+            return View(models);
+        }
+
         [Authorize]
         public IActionResult ProposedClassDetails(int id)
         {
@@ -97,6 +110,17 @@ namespace SeniorCollegeScheduler.Controllers
             }
 
             return View(model);
+        }
+
+        public IActionResult FilterClassesByInstructorName(string InstructorName)
+        {
+            if (string.IsNullOrEmpty(InstructorName))
+            {
+                return RedirectToAction("ProposedClassesOverview");
+            }
+
+            var models = _service.FilterClassesByInstructor(InstructorName);
+            return View(models);
         }
     }
 }

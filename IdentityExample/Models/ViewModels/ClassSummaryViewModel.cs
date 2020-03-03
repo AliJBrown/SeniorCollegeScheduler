@@ -9,6 +9,7 @@ namespace SeniorCollegeScheduler.Models
         public string ProposedTitle { get; set; }
         public string InstructorName { get; set; }
         public string City { get; set; }
+        public bool IsReviewed { get; set; }
         
 
         public static ClassSummaryViewModel FromProposedClass(ProposedClass proposedClass)
@@ -18,7 +19,7 @@ namespace SeniorCollegeScheduler.Models
                 ProposedID = proposedClass.ProposedID,
                 ProposedDate = proposedClass.ProposedDate,
                 ProposedTitle = proposedClass.ProposedTitle,
-                
+                IsReviewed = proposedClass.IsReviewed
             };
         }
     }

@@ -102,8 +102,6 @@ namespace SeniorCollegeScheduler.Controllers
         public IActionResult ViewProposedInstructorDetails(string id)
         {
 
-
-            Debug.WriteLine("calling instructor details");
             var model = _service.GetInstructorDetails(id);
 
             if (model == null)
@@ -114,6 +112,30 @@ namespace SeniorCollegeScheduler.Controllers
             return View(model);
 
         }
+
+        public IActionResult ViewAllUsersOverview()
+        {
+            var model = _service.GetAllUsers();
+            if (model == null)
+            {
+                return NotFound();
+            }
+
+            return View(model);
+        }
+
+        public IActionResult FilterUsersByName(string InstructorName)
+        {
+            if (string.IsNullOrEmpty(InstructorName))
+            {
+                return RedirectToAction("ViewAllUsersOverview");
+            }
+
+            var models = _service.FilterUsersByName(InstructorName);
+            return View(models);
+        }
+
+        //ALL METHODS BELOW ARE FOR LOGGING IN AND REGISTERING
 
         public IActionResult Register()
         {
