@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SeniorCollegeScheduler.Data;
 
 namespace SeniorCollegeScheduler.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200302204709_Identity Fix")]
+    partial class IdentityFix
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -109,7 +111,7 @@ namespace SeniorCollegeScheduler.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("SeniorCollegeScheduler.Models.DataModels.MyIdentityUser", b =>
+            modelBuilder.Entity("SeniorCollegeScheduler.Models.DataModels.User", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -134,6 +136,8 @@ namespace SeniorCollegeScheduler.Data.Migrations
 
                     b.Property<string>("InstructorId")
                         .HasMaxLength(40);
+
+                    b.Property<int>("InstructorInfoId");
 
                     b.Property<bool>("IsFiled");
 
@@ -185,6 +189,8 @@ namespace SeniorCollegeScheduler.Data.Migrations
                         .HasMaxLength(5);
 
                     b.HasKey("Id");
+
+                    b.HasAlternateKey("InstructorInfoId");
 
                     b.HasIndex("NormalizedEmail")
                         .HasName("EmailIndex");
@@ -332,7 +338,7 @@ namespace SeniorCollegeScheduler.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("SeniorCollegeScheduler.Models.DataModels.MyIdentityUser")
+                    b.HasOne("SeniorCollegeScheduler.Models.DataModels.User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -340,7 +346,7 @@ namespace SeniorCollegeScheduler.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("SeniorCollegeScheduler.Models.DataModels.MyIdentityUser")
+                    b.HasOne("SeniorCollegeScheduler.Models.DataModels.User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -353,7 +359,7 @@ namespace SeniorCollegeScheduler.Data.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("SeniorCollegeScheduler.Models.DataModels.MyIdentityUser")
+                    b.HasOne("SeniorCollegeScheduler.Models.DataModels.User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -361,7 +367,7 @@ namespace SeniorCollegeScheduler.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("SeniorCollegeScheduler.Models.DataModels.MyIdentityUser")
+                    b.HasOne("SeniorCollegeScheduler.Models.DataModels.User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);

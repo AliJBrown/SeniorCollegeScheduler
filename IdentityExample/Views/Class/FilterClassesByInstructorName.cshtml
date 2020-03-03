@@ -16,12 +16,12 @@
     <table class="table table-striped recipe">
         <thead>
             <tr>
-               
+                
                 <th>Proposed Date</th>
                 <th>Proposed Title</th>
                 <th>Instructor Name</th>
                 <th>City</th>
-                <th></th>
+                <th>Proposal Reviewed</th>
             </tr>
         </thead>
         <tbody>
@@ -35,9 +35,17 @@
                     <td>@proposedClass.ProposedTitle</td>
                     <td>@proposedClass.InstructorName</td>
                     <td>@proposedClass.City</td>
-                    
+                    @if (proposedClass.IsReviewed)
+                    {
+                        <td style="text-align:center">Yes</td>
+                    }
+                    else
+                    {
+                        <td style="text-align:center">No</td>
+                    }
                     <td><a asp-action="ProposedClassDetails" asp-route-id="@proposedClass.ProposedID" class="btn btn-default">View</a></td>
                 }
+
             </tr>
             }
         </tbody>

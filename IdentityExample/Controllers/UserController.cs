@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using SeniorCollegeScheduler.Models.DataModels;
 using SeniorCollegeScheduler.Models.ViewModels;
 
 namespace SeniorCollegeScheduler.Controllers
@@ -13,12 +15,17 @@ namespace SeniorCollegeScheduler.Controllers
     public class UserController : Controller
     {
         private readonly CollegeDBService _service;
-        private readonly UserManager<IdentityUser> _userService;
+        private readonly UserManager<MyIdentityUser> userManager;
+        private readonly SignInManager<MyIdentityUser> signInManager;
+        private readonly RoleManager<UserRole> roleManager;
 
-        public UserController(CollegeDBService service, UserManager<IdentityUser> userService)
+        public UserController(CollegeDBService service, UserManager<MyIdentityUser> userManager,
+            SignInManager<MyIdentityUser> signInManager, RoleManager<UserRole> roleManager)
         {
             _service = service;
-            _userService = userService;
+            this.userManager = userManager;
+            this.signInManager = signInManager;
+            this.roleManager = roleManager;
         }
 
         [Authorize]
@@ -30,7 +37,8 @@ namespace SeniorCollegeScheduler.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(CreateInstructorCommand command)
         {
-            var appUser = await _userService.GetUserAsync(User);
+            //var appUser = await _userService.GetUserAsync(User);
+            var appUser = await userManager.GetUserAsync(User);
             bool HasFiled = _service.CheckIfFiled(appUser);
             try
             {
@@ -46,6 +54,7 @@ namespace SeniorCollegeScheduler.Controllers
                         Debug.WriteLine("SAVING INSTRUCTOR CREATION");
                         _service.CreateInstructor(command, appUser);
                         return RedirectToAction(nameof(ProposalSuccess));
+
                     }
                 }
             }
@@ -68,7 +77,8 @@ namespace SeniorCollegeScheduler.Controllers
         [Authorize]
         public async Task<IActionResult> ViewInstructorDetails()
         {
-            var appUser = await _userService.GetUserAsync(User);
+            //var appUser = await _userService.GetUserAsync(User);
+            var appUser = await userManager.GetUserAsync(User);
 
             if (_service.CheckIfFiled(appUser))
             {
@@ -86,11 +96,12 @@ namespace SeniorCollegeScheduler.Controllers
                 return RedirectToAction(nameof(Index));
             }
         }
-        
-        
+
+        //[Authorize(Policy = "IsAdmin")]
+        [Authorize]
         public IActionResult ViewProposedInstructorDetails(string id)
         {
-            Debug.WriteLine("calling instructor details");
+
             var model = _service.GetInstructorDetails(id);
 
             if (model == null)
@@ -99,7 +110,110 @@ namespace SeniorCollegeScheduler.Controllers
             }
 
             return View(model);
-            
+
+        }
+
+        public IActionResult ViewAllUsersOverview()
+        {
+            var model = _service.GetAllUsers();
+            if (model == null)
+            {
+                return NotFound();
+            }
+
+            return View(model);
+        }
+
+        public IActionResult FilterUsersByName(string InstructorName)
+        {
+            if (string.IsNullOrEmpty(InstructorName))
+            {
+                return RedirectToAction("ViewAllUsersOverview");
+            }
+
+            var models = _service.FilterUsersByName(InstructorName);
+            return View(models);
+        }
+
+        //ALL METHODS BELOW ARE FOR LOGGING IN AND REGISTERING
+
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        //ValidateAntiForgeryToken]
+        public IActionResult Register(RegisterViewModel obj)
+        {
+            if (ModelState.IsValid)
+            {
+                MyIdentityUser user = new MyIdentityUser();
+                user.UserName = obj.UserName;
+                user.Email = obj.Email;
+
+                IdentityResult result = userManager.CreateAsync
+                    (user, obj.Password).Result;
+
+                if (result.Succeeded)
+                {
+                    if (!roleManager.RoleExistsAsync("NormalUser").Result)
+                    {
+                        UserRole role = new UserRole();
+                        role.Name = "NormalUser";
+                        role.Description = "Perform normal instructor operations";
+                        IdentityResult roleResult = roleManager.
+                            CreateAsync(role).Result;
+                        if (!roleResult.Succeeded)
+                        {
+                            ModelState.AddModelError("",
+                                "Error Creating Role!");
+                            return View(obj);
+                        }
+                    }
+
+                    userManager.AddToRoleAsync(user, "NormalUser").Wait();
+                    return RedirectToAction("Login", "Account");
+                }
+            }
+
+            return View(obj);
+        }
+
+        [HttpPost]
+        //[ValidateAntiForgeryToken]
+        public IActionResult Login(LoginViewModel obj)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = signInManager.PasswordSignInAsync
+                    (obj.UserName, obj.Password, obj.RememberMe, false).Result;
+
+                if (result.Succeeded)
+                {
+
+                    //add if statement here to same Role to Claim
+
+                    MyIdentityUser user = userManager.GetUserAsync(HttpContext.User).Result;
+                    if (userManager.IsInRoleAsync(user, "NormalUser").Result)
+                    {
+                        Debug.WriteLine("User role is \"NormalUser\".");
+                    }
+                    return RedirectToAction("Index", "Home");
+                }
+
+                ModelState.AddModelError("", "Invalid login!");
+            }
+
+            return View(obj);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult LogOff()
+        {
+            signInManager.SignOutAsync().Wait();
+            return RedirectToAction("Login", "Account");
         }
     }
 }

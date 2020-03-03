@@ -2,16 +2,15 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace SeniorCollegeScheduler.Models.DataModels
 {
-    public class User
+    public class MyIdentityUser : IdentityUser
     {
-        [Key]
-        public int InstructorInfoId { get; set; }
-
+        //[ForeignKey()]
         [StringLength(40)]
         public string InstructorId { get; set; }
 
@@ -46,5 +45,6 @@ namespace SeniorCollegeScheduler.Models.DataModels
         public string InstructorBio { get; set; }
 
         public bool IsFiled { get; set; }
+
     }
 }

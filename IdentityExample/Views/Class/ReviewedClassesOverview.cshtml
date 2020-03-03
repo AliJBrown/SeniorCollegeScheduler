@@ -5,11 +5,16 @@
 
 <h2 style="text-align:center;"> @ViewData["Title"]</h2>
 
+<form asp-action="FilterClassesByInstructorName" style="text-align:center">
+    <label style="margin: 5px;">Search For Proposal By Instructor Name: </label><input type="text" name="InstructorName" />
+    <input type="submit" class="btn btn-default" value="Search" />
+</form>
+
 <div class="table-responsive">
     <table class="table table-striped recipe">
         <thead>
             <tr>
-                <th>Proposed ID</th>
+                
                 <th>Proposed Date</th>
                 <th>Proposed Title</th>
                 <th>Instructor Name</th>
@@ -22,12 +27,15 @@
             @foreach (var proposedClass in Model)
             {
             <tr>
-                <td>@proposedClass.ProposedID</td>
-                <td>@proposedClass.ProposedDate</td>
-                <td>@proposedClass.ProposedTitle</td>
-                <td>@proposedClass.InstructorName</td>
-                <td>@proposedClass.City</td>
-                <td><a asp-action="ProposedClassDetails" asp-route-id="@proposedClass.ProposedID" class="btn">View</a></td>
+                @if (proposedClass.InstructorName != null)
+                {
+                    <td>@proposedClass.ProposedDate</td>
+                    <td>@proposedClass.ProposedTitle</td>
+                    <td>@proposedClass.InstructorName</td>
+                    <td>@proposedClass.City</td>
+                    
+                    <td><a asp-action="ProposedClassDetails" asp-route-id="@proposedClass.ProposedID" class="btn btn-default">View</a></td>
+                }
             </tr>
             }
         </tbody>

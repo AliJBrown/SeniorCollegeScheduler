@@ -1,0 +1,45 @@
+﻿@model ICollection<UserSummaryViewModel>
+@{
+    ViewData["Title"] = "Filtered Users";
+}
+
+
+<h2 style="text-align:center;"> @ViewData["Title"]</h2>
+
+<form asp-action="FilterUsersByName" style="text-align:center">
+    <label style="margin: 5px;">Search For Users By Name: </label><input type="text" name="InstructorName" />
+    <input type="submit" class="btn btn-default" value="Search" />
+</form>
+
+<div class="table-responsive" style="width: 80%; margin:auto">
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Instructor Name</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Mobile Phone</th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var user in Model)
+            {
+                <tr>
+                    @if (user.InstructorName != null)
+                    {
+                        <td>@user.InstructorName</td>
+                        <td>@user.City</td>
+                        <td>@user.State</td>
+                        <td>@user.MobilePhone</td>
+                        <td><a asp-action="ViewProposedInstructorDetails" asp-route-id="@user.UserId" class="btn btn-default">View Instructor</a></td>
+                        <td><a asp-controller="Class" asp-action="ViewProposalsByInstructor" asp-route-id="@user.UserId" class="btn btn-default">View Instructors Proposals</a></td>
+                    }
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

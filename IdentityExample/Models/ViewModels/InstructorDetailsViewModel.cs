@@ -39,5 +39,10 @@ namespace SeniorCollegeScheduler.Models.ViewModels
 
         [Display(Name = "Instructor Bio")]
         public string InstructorBio { get; set; }
+
+        
+
+        //Need this if you want to use an IF in the razor page. it needs to pull from policy claim.
+        // public bool IsAdmin { get; set; }
     }
 }
