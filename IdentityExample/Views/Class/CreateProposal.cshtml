@@ -5,7 +5,7 @@
 
 <h2 style="text-align: center">Course Proposal</h2>
 
-
+<environment></environment>
 
 <form asp-controller="Class" asp-action="CreateProposal" method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -19,13 +19,13 @@
                     <input class="form-control" asp-for="ProposedTitle" />
                     <span asp-validation-for="ProposedTitle" class="text-danger"></span>
                 </div>
-                <div style="width: 50%; margin: auto">
+                <div style="width: 25%; margin: auto">
                     <label asp-for="NumClassSessions">Number of Class Sessions</label>
                     <input class="form-control" asp-for="NumClassSessions" />
                     <span asp-validation-for="NumClassSessions" class="text-danger"></span>
                 </div>
-                <div style="width: 50%;  margin: auto">
-                    <label asp-for="LengthOfSession">Length of Class Session</label>
+                <div style="width: 25%;  margin: auto">
+                    <label asp-for="LengthOfSession">Length of Class Session in minutes</label>
                     <input class="form-control" asp-for="LengthOfSession" />
                     <span asp-validation-for="LengthOfSession" class="text-danger"></span>
                 </div>
@@ -35,7 +35,7 @@
                     <span asp-validation-for="ClassDesc" class="text-danger"></span>
                 </div>
                 <div>
-                    <label style="display:block" asp-for="PreRequisites">Pre-Requisites</label>
+                    <label style="display:block" asp-for="PreRequisites">Pre-requisites</label>
                     <textarea asp-for="PreRequisites" style="width: 75%" rows="3" cols="80"> </textarea>
                     <span asp-validation-for="PreRequisites" class="text-danger"></span>
                 </div>
@@ -46,16 +46,16 @@
         <div style="clear:both; padding: 5px;">
             <h4 class="important" style="text-align: center">Instructor Preferences</h4>
             <h4 style="text-align: center">Please Identify Your Available Times</h4>
-            
+
             <div style="word-spacing: 40px; text-align: center">
                 <h5 style="display:inline">Times</h5>
-                <h5 style="display:inline">Mon.</h5>
+                <h5 style="display:inline">Mon. </h5>
                 <h5 style="display:inline">Tues.</h5>
-                <h5 style="display:inline">Wed.</h5>
-                <h5 style="display:inline">Thurs.</h5>
-                <h5 style="display:inline">Fri.</h5>
-                <h5 style="display:inline">Sat.</h5>
-                <h5 style="display:inline">Sun.</h5>
+                <h5 style="display:inline">Wed. </h5>
+                <h5 style="display:inline">Thur.</h5>
+                <h5 style="display:inline">Fri. </h5>
+                <h5 style="display:inline">Sat. </h5>
+                <h5 style="display:inline">Sun. </h5>
             </div>
             <div style="word-spacing: 60px; text-align: center">
                 <h5 style="display:inline">Morning</h5>
@@ -68,7 +68,7 @@
                 <input asp-for="SundayMorning" type="checkbox" value="true" />
             </div>
             <div style="word-spacing: 60px; text-align: center">
-                <h5 style="display:inline">Aternoon</h5>
+                <h5 style="display:inline">Afternoon</h5>
                 <input asp-for="MondayAfternoon" type="checkbox" value="true" />
                 <input asp-for="TuesdayAfternoon" type="checkbox" value="true" />
                 <input asp-for="WednesdayAfternoon" type="checkbox" value="true" />
@@ -120,9 +120,9 @@
                 </p>
                 <div style="border: 1px solid black">
                     <label>Internet Connection</label>
-                    <input style="margin: 5px" type="checkbox" value="true" asp-for="InternetConnection"/>
+                    <input style="margin: 5px" type="checkbox" value="true" asp-for="InternetConnection" />
                     <label>Dry Erase Board and Markers</label>
-                    <input type="checkbox" value="true" asp-for="DryEraseWithMarkers"/>
+                    <input type="checkbox" value="true" asp-for="DryEraseWithMarkers" />
                 </div>
                 <div style="border: 1px solid black; border-top: none">
                     <label>Projector for laptop w/ Screenwall</label>
@@ -134,7 +134,7 @@
                     <label>Microphone/Sound System</label>
                     <input style="margin: 5px" type="checkbox" value="true" asp-for="MicrophoneWithSoundSystem" />
                     <label>VCR/DVD Player & Screen</label>
-                    <input type="checkbox" value="true" asp-for="VCROrDVDWithScreen"/>
+                    <input type="checkbox" value="true" asp-for="VCROrDVDWithScreen" />
                 </div>
                 <div style="border: 1px solid black; border-top: none; margin-bottom: 5px;">
                     <label>Podium</label>
@@ -156,7 +156,7 @@
                 <p>Please indicate whether you wish to be paid this stipend (leave unchecked if you wish to waive this stipend):</p>
                 <div>
                     <label>Stipend to instructor </label>
-                    <input asp-for="StipendRequested" style="margin: 5px" type="checkbox" name="StipendRequested" value="true"/>
+                    <input asp-for="StipendRequested" style="margin: 5px" type="checkbox" name="StipendRequested" value="true" />
                 </div>
             </div>
 
