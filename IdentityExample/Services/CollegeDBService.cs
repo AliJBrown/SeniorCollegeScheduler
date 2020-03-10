@@ -121,11 +121,11 @@ namespace SeniorCollegeScheduler
                 .ToList();
 
         }
-        
+
         //Filters by ID
         public ICollection<ClassSummaryViewModel> GetProposalsByInstructorId(string id)
         {
-            
+
 
             return _context.ProposedClass
                 .Where(x => id.Equals(x.ProposedById))
@@ -157,7 +157,7 @@ namespace SeniorCollegeScheduler
         {
             name = name.ToLower();
             string InstructorId = _context.MyIdentityUser
-                .Where(y => name.Equals((y.FirstName + " " +  y.LastName).ToLower()))
+                .Where(y => name.Equals((y.FirstName + " " + y.LastName).ToLower()))
                 .Select(y => y.InstructorId).FirstOrDefault();
 
             return _context.ProposedClass
@@ -312,7 +312,7 @@ namespace SeniorCollegeScheduler
                     LandlinePhone = FormatPhoneNumber(x.LandlinePhone),
                     MobilePhone = FormatPhoneNumber(x.MobilePhone),
                     InstructorBio = x.InstructorBio,
-                    
+
                 })
                 .SingleOrDefault();
         }
@@ -338,7 +338,7 @@ namespace SeniorCollegeScheduler
                     InstructorBio = x.InstructorBio
                 })
                 .SingleOrDefault();
-            
+
             model.LandlinePhone = FormatPhoneNumber(model.LandlinePhone);
             model.MobilePhone = FormatPhoneNumber(model.MobilePhone);
 
@@ -391,13 +391,13 @@ namespace SeniorCollegeScheduler
 
         public string FormatPhoneNumber(string phone)
         {
-            if(phone == null)
+            if (phone == null)
             {
                 return "";
             }
 
-            
-            return "(" + phone.Substring(0, 3) + ") " + phone.Substring(3, 3) + "-" + phone.Substring(6,4);
+
+            return "(" + phone.Substring(0, 3) + ") " + phone.Substring(3, 3) + "-" + phone.Substring(6, 4);
         }
 
         public string GetInstructorName(string id)
