@@ -1,12 +1,13 @@
-﻿@model SeniorCollegeScheduler.Models.ViewModels.CreateClassCommand
+﻿@model SeniorCollegeScheduler.Models.ViewModels.ClassDetailedViewModel
 @{
     ViewData["Title"] = "Index";
 }
 
 <h2 style="text-align: center">Course Proposal</h2>
 
+<environment></environment>
 
-<form asp-controller="Class" asp-action="CreateProposal" method="post">
+<form asp-controller="Class" asp-action="ModifyProposal" method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div id="wrapper">
         <h3 style="text-align: center">Today's Date: @DateTime.Now</h3>
@@ -15,7 +16,7 @@
             <div style="display:block; padding-bottom: 5px">
                 <div style="width: 50%;  margin: auto">
                     <label asp-for="ProposedTitle">Proposed Title</label>
-                    <input class="form-control" asp-for="ProposedTitle" value="@Model.ProposedTitle"/>
+                    <input class="form-control" asp-for="ProposedTitle" />
                     <span asp-validation-for="ProposedTitle" class="text-danger"></span>
                 </div>
                 <div style="width: 25%; margin: auto">
