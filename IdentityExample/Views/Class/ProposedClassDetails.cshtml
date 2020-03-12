@@ -24,34 +24,43 @@
             <th>Sunday</th>
         </tr>
         <tr>
+            @*<td style="font-weight: bold">Morning</td>
+                @if (Model.MondayMorning == true) {<td> &#9745; </td> } else { <td> &#9744; </td>  }
+                @if (Model.TuesdayMorning == true) {<td> &#9745; </td> } else { <td> &#9744; </td>  }
+                @if (Model.WednesdayMorning == true) {<td> &#9745; </td> } else { <td> &#9744; </td>  }
+                @if (Model.ThursdayMorning == true) {<td> &#9745; </td> } else { <td> &#9744; </td>  }
+                @if (Model.FridayMorning == true) {<td> &#9745; </td> } else { <td> &#9744; </td>  }
+                @if (Model.SaturdayMorning == true) {<td> &#9745; </td> } else { <td> &#9744; </td>  }
+                @if (Model.SundayMorning == true) {<td> &#9745; </td> } else { <td> &#9744; </td>  }*@
+
             <td style="font-weight: bold">Morning</td>
-            @if (Model.MondayMorning == true) {<td> Available </td> } else { <td> Unavailable </td>  }
-            @if (Model.TuesdayMorning == true) {<td> Available </td> } else { <td> Unavailable </td>  }
-            @if (Model.WednesdayMorning == true) {<td> Available </td> } else { <td> Unavailable </td>  }
-            @if (Model.ThursdayMorning == true) {<td> Available </td> } else { <td> Unavailable </td>  }
-            @if (Model.FridayMorning == true) {<td> Available </td> } else { <td> Unavailable </td>  }
-            @if (Model.SaturdayMorning == true) {<td> Available </td> } else { <td> Unavailable </td>  }
-            @if (Model.SundayMorning == true) {<td> Available </td> } else { <td> Unavailable </td>  }
+            @if (Model.MondayMorning == true) {<td> &#9745; </td>} else {<td> &#9744; </td>}
+            @if (Model.TuesdayMorning == true){<td> &#9745; </td>} else {<td> &#9744; </td>}
+            @if (Model.WednesdayMorning == true){<td> &#9745; </td>} else {<td> &#9744; </td>}
+            @if (Model.ThursdayMorning == true){<td> &#9745; </td>} else {<td> &#9744; </td>}
+            @if (Model.FridayMorning == true){<td> &#9745; </td>}else{<td> &#9744; </td>}
+            @if (Model.SaturdayMorning == true){<td> &#9745; </td>}else{<td> &#9744; </td>}
+            @if (Model.SundayMorning == true){<td> &#9745; </td>}else{<td> &#9744; </td>}
         </tr>
         <tr>
             <td style="font-weight: bold">Afternoon</td>
-            @if (Model.MondayAfternoon == true) {<td> Available </td> } else { <td> Unavailable </td>  }
-            @if (Model.TuesdayAfternoon == true) {<td> Available </td> } else { <td> Unavailable </td>  }
-            @if (Model.WednesdayAfternoon == true) {<td> Available </td> } else { <td> Unavailable </td>  }
-            @if (Model.ThursdayAfternoon == true) {<td> Available </td> } else { <td> Unavailable </td>  }
-            @if (Model.FridayAfternoon == true) {<td> Available </td> } else { <td> Unavailable </td>  }
-            @if (Model.SaturdayAfternoon == true) {<td> Available </td> } else { <td> Unavailable </td>  }
-            @if (Model.SundayAfternoon == true) {<td> Available </td> } else { <td> Unavailable </td>  }
+            @if (Model.MondayAfternoon == true){<td> &#9745; </td>}else{<td> &#9744; </td>}
+            @if (Model.TuesdayAfternoon == true){<td> &#9745; </td>}else{<td> &#9744; </td>}
+            @if (Model.WednesdayAfternoon == true){<td> &#9745; </td>}else{<td> &#9744; </td>}
+            @if (Model.ThursdayAfternoon == true){<td> &#9745; </td>}else{<td> &#9744; </td>}
+            @if (Model.FridayAfternoon == true){<td> &#9745; </td>}else{<td> &#9744; </td>}
+            @if (Model.SaturdayAfternoon == true){<td> &#9745; </td>}else{<td> &#9744; </td>}
+            @if (Model.SundayAfternoon == true){<td> &#9745; </td>}else{<td> &#9744; </td>}
         </tr>
         <tr>
             <td style="font-weight: bold">Evening</td>
-            @if (Model.MondayEvening == true) {<td> Available </td> } else { <td> Unavailable </td>  }
-            @if (Model.TuesdayEvening == true) {<td> Available </td> } else { <td> Unavailable </td>  }
-            @if (Model.WednesdayEvening == true) {<td> Available </td> } else { <td> Unavailable </td>  }
-            @if (Model.ThursdayEvening == true) {<td> Available </td> } else { <td> Unavailable </td>  }
-            @if (Model.FridayEvening == true) {<td> Available </td> } else { <td> Unavailable </td>  }
-            @if (Model.SaturdayEvening == true) {<td> Available </td> } else { <td> Unavailable </td>  }
-            @if (Model.SundayEvening == true) {<td> Available </td> } else { <td> Unavailable </td>  }
+            @if (Model.MondayEvening == true){<td> &#9745; </td>}else{<td> &#9744; </td>}
+            @if (Model.TuesdayEvening == true){<td> &#9745; </td>}else{<td> &#9744; </td>}
+            @if (Model.WednesdayEvening == true){<td> &#9745; </td>}else{<td> &#9744; </td>}
+            @if (Model.ThursdayEvening == true){<td> &#9745; </td>}else{<td> &#9744; </td>}
+            @if (Model.FridayEvening == true){<td> &#9745; </td>}else{<td> &#9744; </td>}
+            @if (Model.SaturdayEvening == true){<td> &#9745; </td>}else{<td> &#9744; </td>}
+            @if (Model.SundayEvening == true){<td> &#9745; </td>}else{<td> &#9744; </td>}
         </tr>
     </table>
 
@@ -75,14 +84,32 @@
 <div style="clear: both; text-align:center; padding-top:20px;">
     <h3>Class Room Needs</h3>
     <div style="float: left; width: 40%">
-        @if (Model.InternetConnection == true) { <h4>Internet Connection: Yes</h4>} else { <h4>Internet Connection: No </h4>}
-        @if (Model.DryEraseWithMarkers == true) { <h4>Dry Erase Board: Yes</h4>} else { <h4>Dry Erase Board: No </h4>}
-        @if (Model.ProjectorWithScreen == true) { <h4>Projector w/ Screenwall: Yes</h4> <h4>PC Connection Type: @Model.PCConnectionType</h4>} else { <h4>Projector W/ Screenwall: No </h4>}
+        @if (Model.InternetConnection == true)
+        {<h4>Internet Connection: Yes</h4>}
+        else
+        { <h4>Internet Connection: No </h4>}
+        @if (Model.DryEraseWithMarkers == true)
+        {<h4>Dry Erase Board: Yes</h4>}
+        else
+        { <h4>Dry Erase Board: No </h4>}
+        @if (Model.ProjectorWithScreen == true)
+        {<h4>Projector w/ Screenwall: Yes</h4> <h4>PC Connection Type: @Model.PCConnectionType</h4>}
+    else
+    { <h4>Projector W/ Screenwall: No </h4>}
     </div>
     <div style="float: right; width: 40%">
-        @if (Model.MicrophoneWithSoundSystem == true) { <h4>Microphone/Sound System: Yes</h4>} else { <h4>Microphone/Sound System: No </h4>}
-        @if (Model.VCROrDVDWithScreen == true) { <h4>VCR/DVD Player & Screen: Yes</h4>} else { <h4>VCR/DVD Player & Screen: No </h4>}
-        @if (Model.Podium == true) { <h4>Podium: Yes</h4>} else { <h4>Podium: No </h4>}
+        @if (Model.MicrophoneWithSoundSystem == true)
+        {<h4>Microphone/Sound System: Yes</h4>}
+        else
+        { <h4>Microphone/Sound System: No </h4>}
+        @if (Model.VCROrDVDWithScreen == true)
+        {<h4>VCR/DVD Player & Screen: Yes</h4>}
+        else
+        { <h4>VCR/DVD Player & Screen: No </h4>}
+        @if (Model.Podium == true)
+        {<h4>Podium: Yes</h4>}
+        else
+        { <h4>Podium: No </h4>}
     </div>
     <div style="clear: both"></div>
     <h4>Other Equipment: <span class="courseDetails">@Model.OtherEquipmentNeeded</span></h4>
@@ -100,7 +127,8 @@
         </p>
     </form>
 }
-else { <p class="courseDetails">This proposal has been reviewed. It will be deleted in 30 days </p>}
+else
+{ <p class="courseDetails">This proposal has been reviewed. It will be deleted in 30 days </p>}
 
 
 

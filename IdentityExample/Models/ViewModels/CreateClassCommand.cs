@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace SeniorCollegeScheduler.Models.ViewModels
@@ -81,6 +83,19 @@ namespace SeniorCollegeScheduler.Models.ViewModels
         public string DryEraseWithMarkers { get; set; }
         public string ProjectorWithScreen { get; set; }
         public string PCConnectionType { get; set; }
+
+        public IEnumerable<SelectListItem> connections { get; set; }
+        = new List<SelectListItem>
+        {
+                    new SelectListItem{Text="Preferred Type"},
+                    new SelectListItem{Value="DisplayPort",Text="DisplayPort"},
+                    new SelectListItem{Value="DVI",Text="DVI"},
+                    new SelectListItem{Value="HDMI",Text="HDMI"},
+                    new SelectListItem{Value="Micro DisplayPort", Text="Micro DisplayPort"},
+                    new SelectListItem{Value="Micro HDMI",Text="Micro HDMI"},
+                    new SelectListItem{Value="VGA",Text="VGA"},
+        };
+
         public string MicrophoneWithSoundSystem { get; set; }
         public string VCROrDVDWithScreen { get; set; }
         public string Podium { get; set; }
