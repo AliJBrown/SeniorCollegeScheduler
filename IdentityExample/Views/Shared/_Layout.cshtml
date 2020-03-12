@@ -43,19 +43,43 @@
                         var appUser = await UserManager.GetUserAsync(User);
                         @if (appUser.Id.Equals("593d1d49-f42c-4e1e-83ed-5a6d4a66fb51"))
                         {
-                            <li><a asp-area="" asp-controller="Class" asp-action="ProposedClassesOverview">Proposed Classes</a></li>
-                            <li><a asp-area="" asp-controller="Class" asp-action="ReviewedClassesOverview">Reviewed Classes</a></li>
-                            <li><a asp-area="" asp-controller="User" asp-action="ViewAllUsersOverview">View All Users</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin Links <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a asp-area="" asp-controller="Class" asp-action="ProposedClassesOverview">Proposed Classes</a></li>
+                                    <li><a asp-area="" asp-controller="Class" asp-action="ReviewedClassesOverview">Reviewed Classes</a></li>
+                                    <li><a asp-area="" asp-controller="User" asp-action="ViewAllUsersOverview">View All Users</a></li>
+
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">General <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a asp-area="" asp-controller="Class" asp-action="CreateProposal">Class Proposal Form</a></li>
+                                    @if (!dbService.CheckIfFiled(appUser))
+                                    {
+                                        <li><a asp-area="" asp-controller="User" asp-action="Index">Fill Out Your Instructor Info</a></li>
+                                    }
+                                    @if (dbService.CheckIfFiled(appUser))
+                                    {
+                                        <li><a asp-area="" asp-controller="User" asp-action="ViewInstructorDetails">View Your Information</a></li>
+                                    }
+                                </ul>
+                            </li>
                         }
-                        <li><a asp-area="" asp-controller="Class" asp-action="CreateProposal">Class Proposal Form</a></li>
-                        if (!dbService.CheckIfFiled(appUser))
+                        else
                         {
-                            <li><a asp-area="" asp-controller="User" asp-action="Index">Fill Out Your Instructor Info</a></li>
+                            <li><a asp-area="" asp-controller="Class" asp-action="CreateProposal">Class Proposal Form</a></li>
+                            if (!dbService.CheckIfFiled(appUser))
+                            {
+                                <li><a asp-area="" asp-controller="User" asp-action="Index">Fill Out Your Instructor Info</a></li>
+                            }
+                            if (dbService.CheckIfFiled(appUser))
+                            {
+                                <li><a asp-area="" asp-controller="User" asp-action="ViewInstructorDetails">View Your Information</a></li>
+                            }
                         }
-                        if (dbService.CheckIfFiled(appUser))
-                        {
-                            <li><a asp-area="" asp-controller="User" asp-action="ViewInstructorDetails">View Your Information</a></li>
-                        }
+
                     }
 
 

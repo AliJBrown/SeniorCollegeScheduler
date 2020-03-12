@@ -1,0 +1,267 @@
+﻿@model SeniorCollegeScheduler.Models.ViewModels.ClassDetailedViewModel
+@{
+    ViewData["Title"] = "Please Verify The Information";
+}
+
+<h2 style="text-align: center">@ViewData["Title"]</h2>
+
+<h4 style="text-align: center">Proposed On: <span class="courseDetails">@DateTime.Now</span></h4>
+<div style="padding-top: 20px">
+
+    <h4 style="text-align: center">Class Description: <span class="courseDetails">@Model.ClassDesc</span></h4>
+    <h4 style="text-align: center">Class Pre-Requisites: <span class="courseDetails">@Model.PreRequisites </span></h4>
+    <h4 style="text-align: center">Preferred Times:</h4>
+    <table style="width:100%">
+        <tr>
+            <th></th>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+            <th>Saturday</th>
+            <th>Sunday</th>
+        </tr>
+        <tr>
+            <td style="font-weight: bold">Morning</td>
+            @if (Model.MondayMorning.Equals("true"))
+            {
+                <td> Available </td>
+            }
+            else
+            {
+                <td> Unavailable </td>
+            }
+            @if (Model.TuesdayMorning.Equals("true"))
+            {
+                <td> Available </td>
+            }
+            else
+            {
+                <td> Unavailable </td>
+            }
+            @if (Model.WednesdayMorning.Equals("true"))
+            {
+                <td> Available </td>
+            }
+            else
+            {
+                <td> Unavailable </td>
+            }
+            @if (Model.ThursdayMorning.Equals("true"))
+            {
+                <td> Available </td>
+            }
+            else
+            {
+                <td> Unavailable </td>
+            }
+            @if (Model.FridayMorning.Equals("true"))
+            {
+                <td> Available </td>
+            }
+            else
+            {
+                <td> Unavailable </td>
+            }
+            @if (Model.SaturdayMorning.Equals("true"))
+            {
+                <td> Available </td>
+            }
+            else
+            {
+                <td> Unavailable </td>
+            }
+            @if (Model.SundayMorning.Equals("true"))
+            {
+                <td> Available </td>
+            }
+            else
+            {
+                <td> Unavailable </td>
+            }
+        </tr>
+        <tr>
+            <td style="font-weight: bold">Afternoon</td>
+            @if (Model.MondayAfternoon.Equals("true"))
+            {
+                <td> Available </td>
+            }
+            else
+            {
+                <td> Unavailable </td>
+            }
+            @if (Model.TuesdayAfternoon.Equals("true"))
+            {
+                <td> Available </td>
+            }
+            else
+            {
+                <td> Unavailable </td>
+            }
+            @if (Model.WednesdayAfternoon.Equals("true"))
+            {
+                <td> Available </td>
+            }
+            else
+            {
+                <td> Unavailable </td>
+            }
+            @if (Model.ThursdayAfternoon.Equals("true"))
+            {
+                <td> Available </td>
+            }
+            else
+            {
+                <td> Unavailable </td>
+            }
+            @if (Model.FridayAfternoon.Equals("true"))
+            {
+                <td> Available </td>
+            }
+            else
+            {
+                <td> Unavailable </td>
+            }
+            @if (Model.SaturdayAfternoon.Equals("true"))
+            {
+                <td> Available </td>
+            }
+            else
+            {
+                <td> Unavailable </td>
+            }
+            @if (Model.SundayAfternoon.Equals("true"))
+            {
+                <td> Available </td>
+            }
+            else
+            {
+                <td> Unavailable </td>
+            }
+        </tr>
+        <tr>
+            <td style="font-weight: bold">Evening</td>
+            @if (Model.MondayEvening.Equals("true"))
+            {
+                <td> Available </td>
+            }
+            else
+            {
+                <td> Unavailable </td>
+            }
+            @if (Model.TuesdayEvening.Equals("true"))
+            {
+                <td> Available </td>
+            }
+            else
+            {
+                <td> Unavailable </td>
+            }
+            @if (Model.WednesdayEvening.Equals("true"))
+            {
+                <td> Available </td>
+            }
+            else
+            {
+                <td> Unavailable </td>
+            }
+            @if (Model.ThursdayEvening.Equals("true"))
+            {
+                <td> Available </td>
+            }
+            else
+            {
+                <td> Unavailable </td>
+            }
+            @if (Model.FridayEvening.Equals("true"))
+            {
+                <td> Available </td>
+            }
+            else
+            {
+                <td> Unavailable </td>
+            }
+            @if (Model.SaturdayEvening.Equals("true"))
+            {
+                <td> Available </td>
+            }
+            else
+            {
+                <td> Unavailable </td>
+            }
+            @if (Model.SundayEvening.Equals("true"))
+            {
+                <td> Available </td>
+            }
+            else
+            {
+                <td> Unavailable </td>
+            }
+        </tr>
+    </table>
+
+    <h4 style="text-align: center">Date/Time Restrictions: <span class="courseDetails">@Model.DateTimeRestrictions </span></h4>
+</div>
+
+<div style="clear: both; text-align:center; padding-top: 20px;">
+    <h3>Instructor Requirements</h3>
+    <div style="float: left; width: 40%">
+        <h4>Minimum Students: <span class="courseDetails">@Model.MinStudentCount</span></h4>
+        <h4>Maximum Students: <span class="courseDetails">@Model.MaxStudentCount</span></h4>
+        <h4>Stipend Instructor: <span class="courseDetails"> @Model.StipendRequested</span></h4>
+    </div>
+    <div style="float: right; width: 40%">
+        <h4>Tables Needed: <span class="courseDetails">@Model.TablesNeeded</span></h4>
+        <h4>Chairs Needed: <span class="courseDetails">@Model.ChairsNeeded</span></h4>
+        <h4>Handout Costs: <span class="courseDetails">@Model.HandoutCost</span></h4>
+    </div>
+</div>
+
+<div style="clear: both; text-align:center; padding-top:20px;">
+    <h3>Class Room Needs</h3>
+    <div style="float: left; width: 40%">
+        @if (Model.InternetConnection.Equals("true"))
+        {<h4>Internet Connection: Yes</h4>}
+        else
+        { <h4>Internet Connection: No </h4>}
+        @if (Model.DryEraseWithMarkers.Equals("true"))
+        {<h4>Dry Erase Board: Yes</h4>}
+        else
+        { <h4>Dry Erase Board: No </h4>}
+        @if (Model.ProjectorWithScreen.Equals("true"))
+        {<h4>Projector w/ Screenwall: Yes</h4> <h4>PC Connection Type: @Model.PCConnectionType</h4>}
+    else
+    { <h4>Projector W/ Screenwall: No </h4>}
+    </div>
+    <div style="float: right; width: 40%">
+        @if (Model.MicrophoneWithSoundSystem.Equals("true"))
+        {<h4>Microphone/Sound System: Yes</h4>}
+        else
+        { <h4>Microphone/Sound System: No </h4>}
+        @if (Model.VCROrDVDWithScreen.Equals("true"))
+        {<h4>VCR/DVD Player & Screen: Yes</h4>}
+        else
+        { <h4>VCR/DVD Player & Screen: No </h4>}
+        @if (Model.Podium.Equals("true"))
+        {<h4>Podium: Yes</h4>}
+        else
+        { <h4>Podium: No </h4>}
+    </div>
+    <div style="clear: both"></div>
+    <h4>Other Equipment: <span class="courseDetails">@Model.OtherEquipmentNeeded</span></h4>
+</div>
+
+<div style="clear: both"></div>
+
+<form asp-controller="Home" asp-action="index">
+    <p>
+        <button class="btn btn-primary">Submit</button>
+    </p>
+</form>
+
+<form asp-controller="Class" asp-action="ModifyProposal" style="float:left" asp-route-id="@Model.ProposalId">
+    <p>
+        <button class="btn btn-danger">Make Changes</button>
+    </p>
+</form>
