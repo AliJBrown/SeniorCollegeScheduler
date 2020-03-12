@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using SeniorCollegeScheduler.Models.DataModels;
 using SeniorCollegeScheduler.Models.ViewModels;
 using System;
+using System.Collections;
 using System.Threading.Tasks;
 
 namespace SeniorCollegeScheduler.Controllers
@@ -33,7 +35,7 @@ namespace SeniorCollegeScheduler.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateProposal(CreateClassCommand command)
         {
-            
+
             var appUser = await _userService.GetUserAsync(User);
             try
             {
@@ -81,7 +83,7 @@ namespace SeniorCollegeScheduler.Controllers
             return View();
         }
 
-        
+
         public IActionResult VerifyProposalInformation(int id)
         {
             var model = _service.GetProposedClassDetails(id);
@@ -110,9 +112,9 @@ namespace SeniorCollegeScheduler.Controllers
         public IActionResult ProposedClassesOverview()
         {
             //var appUser = await _userService.GetUserAsync(User);
-            
+
             var models = _service.GetProposals();
-            if(models == null)
+            if (models == null)
             {
                 return NotFound();
             }
