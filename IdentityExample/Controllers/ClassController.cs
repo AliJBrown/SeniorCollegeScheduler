@@ -30,20 +30,16 @@ namespace SeniorCollegeScheduler.Controllers
             }
             return RedirectToAction(nameof(UserInformationNeeded));
         }
-
-        public IActionResult UserInformationNeeded()
-        {
-            return View();
-        }
-
         [HttpPost]
         public async Task<IActionResult> CreateProposal(CreateClassCommand command)
         {
+            
             var appUser = await _userService.GetUserAsync(User);
             try
             {
                 if (ModelState.IsValid)
                 {
+                    //return RedirectToAction("VerifyProposalInformation", command);
                     var id = _service.CreateClassProposal(command, appUser);
                     return RedirectToAction(nameof(ProposedClassDetails), new { id = id });
                 }
@@ -57,6 +53,50 @@ namespace SeniorCollegeScheduler.Controllers
             }
 
             return View(command);
+        }
+
+        [HttpPost]
+        public IActionResult EditProposal(int id)
+        {
+            var model = _service.GetProposedClassDetails(id);
+            if (model == null)
+            {
+                return NotFound();
+            }
+
+            return View(model);
+        }
+
+        /*
+        [HttpPost]
+        public IActionResult ModifyProposal(ClassDetailedViewModel cmd)
+        {
+            //_service.ModifyProposal(cmd);
+
+            return RedirectToAction("ProposalSuccess");
+        }
+
+        public IActionResult ProposalSuccess()
+        {
+            return View();
+        }
+
+        
+        public IActionResult VerifyProposalInformation(int id)
+        {
+            var model = _service.GetProposedClassDetails(id);
+            if (model == null)
+            {
+                return NotFound();
+            }
+            ViewBag.id = id;
+            return View(model);
+        }
+        */
+
+        public IActionResult UserInformationNeeded()
+        {
+            return View();
         }
 
         [HttpPost]
